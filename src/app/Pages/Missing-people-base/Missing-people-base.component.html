@@ -1,4 +1,44 @@
-<p>
-  Missing-people-base works!
-</p>
+<div class="card">
+  <p-dataView #dv [value]="persons" [paginator]="true" [rows]="9" layout="grid">
+      <ng-template pTemplate="header">
+          <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+              <p-dropdown placeholder="Sort By Price" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
+              <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                  <i class="pi pi-search"></i>
+                  <input type="search" pInputText placeholder="Search by Name">
+              </span>
+              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+          </div>
+      </ng-template>
+      <ng-template let-person pTemplate="listItem">
+          <div class="p-col-12">
+              <div class="product-list-item">
+                  <div class="product-list-detail">
+                      <div class="product-name">{{person.name}}</div>
+                      <div class="product-description">{{person.surname}}</div>
+                      <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{person.town}}</span>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+      <ng-template let-person pTemplate="gridItem">
+          <div class="p-col-12 p-md-4">
+              <div class="product-grid-item card">
+                  <div class="product-grid-item-top">
+                      <div>
+                          <i class="pi pi-tag product-category-icon"></i>
+                          <span class="product-category">{{person.town}}</span>
+                      </div>
+                  </div>
+                  <div class="product-grid-item-content">
+                      <div class="product-name">{{person.name}}</div>
+                      <div class="product-description">{{person.surname}}</div>
+                  </div>
+                  <div class="product-grid-item-bottom">
+                      <span class="product-price">${{person.price}}</span>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+  </p-dataView>
 <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" (click)="openTabDatabase()"></button>

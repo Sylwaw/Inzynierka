@@ -7,9 +7,35 @@ import { MissingPeopleBaseComponent } from './Missing-people-base.component';
 import { DatabaseModule } from './database/database.module';
 import { DatabaseComponent } from './database/database.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { DataViewModule } from 'primeng/dataview';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PanelModule } from 'primeng/panel';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { RippleModule } from 'primeng/ripple';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   declarations: [MissingPeopleBaseComponent],
-  imports: [CommonModule, ButtonModule, AccordionModule, DatabaseModule, AppRoutingModule],
+  imports: [
+    CommonModule,
+    ButtonModule,
+    AccordionModule,
+    DatabaseModule,
+    AppRoutingModule,
+    DataViewModule,
+    BrowserAnimationsModule,
+    PanelModule,
+    DialogModule,
+    DropdownModule,
+    InputTextModule,
+    RippleModule,
+    HttpClientModule,
+    RatingModule,
+    FormsModule,
+  ],
 })
 export class MissingPeopleBaseModule {}
