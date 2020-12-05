@@ -12,10 +12,6 @@ import { Person } from 'src/app/Models/person';
 export class MissingPeopleBaseComponent implements OnInit {
   constructor(private router: Router) {}
 
-  openTabDatabase() {
-    this.router.navigateByUrl('/database');
-  }
-
   persons: Person[] = [
     {
       id: '1',
@@ -51,9 +47,48 @@ export class MissingPeopleBaseComponent implements OnInit {
       surname: 'Wawrzuta',
       town: 'Bielsko',
       image: 'TU BĘDZIE FOTKA'
+    },
+    {
+      id: '6',
+      name: 'Sylwia',
+      surname: 'Wawrzuta',
+      town: 'Bielsko',
+      image: 'TU BĘDZIE FOTKA'
+    },
+    {
+      id: '7',
+      name: 'Sylwia',
+      surname: 'Wawrzuta',
+      town: 'Bielsko',
+      image: 'TU BĘDZIE FOTKA'
+    },
+    {
+      id: '1',
+      name: 'Sylwia',
+      surname: 'Wawrzuta',
+      town: 'Bielsko',
+      image: 'TU BĘDZIE FOTKA'
+    },
+    {
+      id: '1',
+      name: 'Sylwia',
+      surname: 'Wawrzuta',
+      town: 'Bielsko',
+      image: 'TU BĘDZIE FOTKA'
+    },
+    {
+      id: '1',
+      name: 'Sylwia',
+      surname: 'Wawrzuta',
+      town: 'Bielsko',
+      image: 'TU BĘDZIE FOTKA'
     }
 
   ];
+
+  openTabDatabase() {
+    this.router.navigateByUrl('/database');
+  }
 
 
 

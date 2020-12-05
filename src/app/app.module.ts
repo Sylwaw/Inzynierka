@@ -17,6 +17,7 @@ import { MenuItem } from 'primeng/api';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { DatabaseComponent } from './Pages/Missing-people-base/database/database.component';
 import { MissingPeopleBaseModule } from './Pages/Missing-people-base/missing-people-base.module';
+import { AddPersonModule } from './Pages/add-person/add-person.module';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,10 @@ import { MissingPeopleBaseModule } from './Pages/Missing-people-base/missing-peo
     AppRoutingModule,
     NgbModule,
     ButtonModule,
+    AddPersonModule,
     MissingPeopleBaseModule,
     AccordionModule,
-    TabMenuModule
+    TabMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

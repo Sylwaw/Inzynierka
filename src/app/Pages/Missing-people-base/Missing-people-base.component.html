@@ -2,10 +2,10 @@
   <p-dataView #dv [value]="persons" [paginator]="true" [rows]="9" layout="grid">
       <ng-template pTemplate="header">
           <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
-              <p-dropdown placeholder="Sort By Price" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
+              <p-dropdown placeholder="Sort" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
               <span class="p-input-icon-left p-mb-2 p-mb-md-0">
                   <i class="pi pi-search"></i>
-                  <input type="search" pInputText placeholder="Search by Name">
+                  <input type="search" pInputText placeholder="Search">
               </span>
               <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
           </div>
@@ -14,9 +14,12 @@
           <div class="p-col-12">
               <div class="product-list-item">
                   <div class="product-list-detail">
-                      <div class="product-name">{{person.name}}</div>
-                      <div class="product-description">{{person.surname}}</div>
+                      <div class="product-name">{{person.name }} {{person.surname}}</div>
+                      <div class="product-description">{{person.id}} lat</div>
                       <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{person.town}}</span>
+                      <div class="images"><img [src]="'assets/foto1.jpg'"/></div>
+                      <br>
+                      <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" (click)="openTabDatabase()"></button>
                   </div>
               </div>
           </div>
@@ -31,14 +34,15 @@
                       </div>
                   </div>
                   <div class="product-grid-item-content">
-                      <div class="product-name">{{person.name}}</div>
-                      <div class="product-description">{{person.surname}}</div>
+                    <div class="product-name">{{person.name}} {{person.surname}}</div>
+                      <div class="product-description">{{person.id}} lat</div>
+                      <div class="images"><img [src]="'assets/foto1.jpg'"/></div>
                   </div>
                   <div class="product-grid-item-bottom">
-                      <span class="product-price">${{person.price}}</span>
+                    <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" (click)="openTabDatabase()"></button>
                   </div>
               </div>
           </div>
       </ng-template>
   </p-dataView>
-<button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" (click)="openTabDatabase()"></button>
+
