@@ -15,73 +15,73 @@ export class MissingPeopleBaseComponent implements OnInit {
   persons: Person[] = [
     {
       id: '1',
-      name: 'Sylwia',
-      surname: 'Wawrzuta',
-      town: 'Bielsko',
-      image: 'TU BĘDZIE FOTKA'
+      name: 'Henryk',
+      surname: 'Abłomiejko',
+      town: 'Urad',
+      image: 'assets/foto1.jpg'
     },
     {
       id: '2',
-      name: 'Sylwiaa',
-      surname: 'Wawrzuta',
-      town: 'Bielsko',
-      image: 'TU BĘDZIE FOTKA'
+      name: 'Rafał',
+      surname: 'Adach',
+      town: '-',
+      image: 'assets/foto2.jpg'
     },
     {
       id: '3',
-      name: 'Sylwiaaa',
-      surname: 'Wawrzuta',
-      town: 'Bielsko',
-      image: 'TU BĘDZIE FOTKA'
+      name: 'Mariusz',
+      surname: 'Adamczewski',
+      town: '-',
+      image: 'assets/foto3.jpg'
     },
     {
       id: '4',
-      name: 'Sylwiaaaa',
-      surname: 'Wawrzuta',
-      town: 'Bielsko',
-      image: 'TU BĘDZIE FOTKA'
+      name: 'Paweł',
+      surname: 'Adamczyk',
+      town: '-',
+      image: 'assets/foto4.jpg'
     },
     {
       id: '5',
       name: 'Sylwiaaaaa',
       surname: 'Wawrzuta',
       town: 'Bielsko',
-      image: 'TU BĘDZIE FOTKA'
+      image: 'assets/foto5.jpg'
     },
     {
       id: '6',
       name: 'Sylwia',
       surname: 'Wawrzuta',
       town: 'Bielsko',
-      image: 'TU BĘDZIE FOTKA'
+      image: 'assets/foto6.jpg'
     },
     {
       id: '7',
       name: 'Sylwia',
       surname: 'Wawrzuta',
       town: 'Bielsko',
-      image: 'TU BĘDZIE FOTKA'
+      image: 'assets/foto7.jpg'
     },
     {
       id: '1',
       name: 'Sylwia',
       surname: 'Wawrzuta',
       town: 'Bielsko',
-      image: 'TU BĘDZIE FOTKA'
+      image: 'assets/foto8.jpg'
+    },
+    {
+      id: '1',
+      name: 'Henryk',
+      surname: 'Abłomiejko',
+      town: 'Urad',
+      image: 'assets/foto9.jpg'
     },
     {
       id: '1',
       name: 'Sylwia',
       surname: 'Wawrzuta',
       town: 'Bielsko',
-      image: 'TU BĘDZIE FOTKA'
-    },
-    {
-      id: '1',
-      name: 'Sylwia',
-      surname: 'Wawrzuta',
-      town: 'Bielsko',
-      image: 'TU BĘDZIE FOTKA'
+      image: 'assets/foto10.jpg'
     }
 
   ];
