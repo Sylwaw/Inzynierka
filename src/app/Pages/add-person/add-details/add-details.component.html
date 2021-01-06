@@ -1,1 +1,20 @@
-<p>add-details works!</p>
+<div class="stepsdemo-content">
+    <p-card>
+        <ng-template pTemplate="title">
+            Szczegóły wyglądu
+        </ng-template>
+        <ng-template pTemplate="subtitle">
+            Uzupełnij dane na temat szczegółów wyglądu zaginionego
+        </ng-template>
+        <ng-template pTemplate="content">
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="p-grid p-nogutter p-justify-between">
+                <p-button label="Back" (click)="prevPage()" icon="pi pi-angle-left"></p-button>
+                <p-button label="Submit" icon="pi pi-check" iconPos="right"></p-button>
+            </div>
+        </ng-template>
+
+    </p-card>
+</div>
+<router-outlet></router-outlet>

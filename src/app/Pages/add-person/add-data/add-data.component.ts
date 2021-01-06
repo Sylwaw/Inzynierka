@@ -8,6 +8,8 @@ export interface PersonalInformation {
   lastname?: string;
   secondName?: string;
   birthDate?: number;
+  lastPlace?: string;
+  lostDate?: Date;
 }
 
 @Component({
@@ -16,28 +18,26 @@ export interface PersonalInformation {
   styleUrls: ['./add-data.component.css'],
 })
 export class AddDataComponent implements OnInit {
-  // constructor(private router: Router) {}
-  // date1: Date;
-  // value:Date;
-  // ngOnInit(): void {
-  //   // this.router.navigate();
-  // }
   personalInformation: PersonalInformation = {};
 
-    submitted = false;
+  submitted = false;
 
-    constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
-    ngOnInit() {
+  ngOnInit() {}
+
+  nextPage() {
+    // tslint:disable-next-line: max-line-length
+    if (
+      this.personalInformation.firstname &&
+      this.personalInformation.lastname &&
+      this.personalInformation.birthDate &&
+      this.personalInformation.lastPlace &&
+      this.personalInformation.lostDate
+    ) {
+      this.router.navigateByUrl('/add/photo');
+      return;
     }
-
-    nextPage() {
-        // tslint:disable-next-line: max-line-length
-        if (this.personalInformation.firstname && this.personalInformation.lastname && this.personalInformation.birthDate && this.personalInformation.secondName) {
-            this.router.navigate(['add/photo']);
-            return;
-        }
-
-        this.submitted = true;
-    }
+    this.submitted = true;
+  }
 }

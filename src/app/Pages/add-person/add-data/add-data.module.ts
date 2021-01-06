@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
+import { AddPhotoModule } from '../add-photo/add-photo.module';
 
 @NgModule({
   declarations: [AddDataComponent],
@@ -19,7 +20,8 @@ import { ButtonModule } from 'primeng/button';
     InputTextModule,
     CalendarModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    AddPhotoModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
