@@ -1,4 +1,4 @@
-<div class="personal-data center">
+<!-- <div class="personal-data center">
     <span class="p-float-label inline-block">
         <input id="float-input" type="text" pInputText> 
         <label for="float-input">Imię</label>
@@ -15,6 +15,49 @@
         <p-calendar inputId="float-input"></p-calendar>
         <label for="float-input">Data zaginięcia</label>
     </div>  
+</div> -->
+
+<div class="stepsdemo-content">
+    <p-card>
+        <ng-template pTemplate="title">
+            Dane osobowe
+        </ng-template>
+        <ng-template pTemplate="subtitle">
+            Wprowadź dane osobowe
+        </ng-template>
+        <ng-template pTemplate="content">
+            <div class="p-fluid">
+                <div class="p-field">
+                    <label for="firstname">Imię</label>
+                    <input #firstname="ngModel" id="firstname" type="text" required pInputText [(ngModel)]="personalInformation.firstname" [ngClass]="{'p-invalid': (firstname.invalid && submitted) || (firstname.dirty && firstname.invalid)}"> 
+                    <small *ngIf="(firstname.invalid && submitted) || (firstname.dirty && firstname.invalid)" class="p-error">Firstname is required.</small>
+                </div>
+                <div class="p-field">
+                    <label for="secondName">Drugie imię (Opcjonalnie)</label>
+                    <input #secondName="ngModel" id="secondName" type="text" required pInputText [(ngModel)]="personalInformation.secondName" [ngClass]="{'p-invalid': (secondName.invalid && submitted) || (secondName.dirty && secondName.invalid)}"> 
+                </div>
+                <div class="p-field">
+                    <label for="lastname">Nazwisko</label>
+                    <input #lastname="ngModel" id="lastname" type="text" required pInputText [(ngModel)]="personalInformation.lastname" [ngClass]="{'p-invalid': (lastname.invalid && submitted) || (lastname.dirty && lastname.invalid)}"> 
+                    <small class="p-error" *ngIf="(lastname.invalid && submitted )|| (lastname.dirty && lastname.invalid)">Lastname is required.</small>
+                </div>
+                <div class="p-field">
+                    <label for="age">Rok urodzenia</label>
+                    <input #age="ngModel" id="age" type="number" required pInputText [(ngModel)]="personalInformation.birthDate" [ngClass]="{'p-invalid': (age.invalid && submitted) || (age.dirty && age.invalid)}"> 
+                    <small class="p-error" *ngIf="(age.invalid && submitted) || (age.dirty && age.invalid)">Age is required.</small>
+                </div>    
+            </div>
+            <div class="p-field lost-date" >
+                <label for="float-input">Data zaginięcia</label>    
+                <p-calendar inputId="float-input"></p-calendar>    
+            </div> 
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="p-grid p-nogutter p-justify-end">
+                <button pButton label="Next" (onClick)="nextPage()" icon="pi pi-angle-right" iconPos="right"></button>
+            </div>
+        </ng-template>
+    </p-card>
 </div>
 
 

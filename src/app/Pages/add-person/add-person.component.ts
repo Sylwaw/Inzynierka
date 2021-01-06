@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-add-person',
@@ -7,7 +8,7 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./add-person.component.css'],
 })
 export class AddPersonComponent implements OnInit {
-  constructor() {}
+  constructor(public messageService: MessageService) {}
 
   items: MenuItem[];
 
@@ -17,5 +18,6 @@ export class AddPersonComponent implements OnInit {
       { label: 'Zdjęcie', routerLink: 'photo' },
       { label: 'Szczegóły', routerLink: 'details' },
     ];
+    this.messageService.add({});
   }
 }

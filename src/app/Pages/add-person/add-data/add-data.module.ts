@@ -4,19 +4,23 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddDataComponent } from './add-data.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
+import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [AddDataComponent],
   imports: [
     CommonModule,
+    CardModule,
     RouterModule,
     InputTextModule,
     CalendarModule,
     FormsModule,
+    ButtonModule
   ],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AddDataModule {}

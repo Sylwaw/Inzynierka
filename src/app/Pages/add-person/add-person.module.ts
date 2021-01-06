@@ -8,15 +8,19 @@ import { MessageService } from 'primeng/api';
 import { AddPhotoComponent } from './add-photo/add-photo.component';
 import { AddDetailsComponent } from './add-details/add-details.component';
 import { AddDataModule } from './add-data/add-data.module';
+import { AddPhotoModule } from './add-photo/add-photo.module';
+import { AddDetailsModule } from './add-details/add-details.module';
 
 @NgModule({
-  declarations: [AddPersonComponent, AddPhotoComponent, AddDetailsComponent],
+  declarations: [AddPersonComponent],
   imports: [
     CommonModule,
     FormsModule,
     StepsModule,
     ToastModule,
     AddDataModule,
+    AddPhotoModule,
+    AddDetailsModule
   ],
   exports: [AddPersonComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
