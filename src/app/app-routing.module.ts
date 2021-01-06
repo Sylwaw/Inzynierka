@@ -15,6 +15,7 @@ export const routes: Routes = [
     {path: 'main', component: MainComponent},
     {path: 'search', component: MissingPeopleBaseComponent},
     {path: 'add', component: AddPersonComponent, children: [
+        { path: '', redirectTo: '/add/data', pathMatch: 'full' },
         { path: 'data', component: AddDataComponent },
         { path: 'photo', component: AddPhotoComponent },
         { path: 'details', component: AddDetailsComponent },

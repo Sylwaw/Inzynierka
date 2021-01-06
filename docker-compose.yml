@@ -1,0 +1,31 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+  postgres:
+    image: postgres
+    container_name: homeBudgetDb
+    networks: 
+      - homeBudgetBridge
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: SylwiaChycSieRoboty
+
+  pgAdmin:
+    image: dpage/pgadmin4
+    container_name: pgAdmin
+    networks: 
+      - homeBudgetBridge
+    ports:
+      - 5050:80
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: sylwaw@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: SylwiaChycSieRoboty
+
+networks:
+  homeBudgetBridge:
+    driver: bridge

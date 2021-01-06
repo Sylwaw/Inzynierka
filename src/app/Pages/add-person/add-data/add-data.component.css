@@ -1,0 +1,11 @@
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p-float-label {
+    display: inline-block;
+    margin-top: 2%;
+    margin-left: 5px;
+}
