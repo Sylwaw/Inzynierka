@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { AddPhotoModule } from '../add-photo/add-photo.module';
 
+
 @NgModule({
   declarations: [AddDataComponent],
   imports: [

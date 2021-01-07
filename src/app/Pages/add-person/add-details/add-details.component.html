@@ -7,6 +7,17 @@
             Uzupełnij dane na temat szczegółów wyglądu zaginionego
         </ng-template>
         <ng-template pTemplate="content">
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field">
+                    <label for="eyes">Kolor oczu</label>
+                    <p-dropdown [options]="eyes" [(ngModel)]="selectedValue" optionLabel="viewValue" optionValue="value" placeholder="Wybierz kolor"></p-dropdown>
+                </div>
+                <div class="p-field">
+                    <label for="height">Wzrost</label>
+                    <p-dropdown [options]="height" [(ngModel)]="selectedValue" optionLabel="viewValue" optionValue="value" placeholder="Wybierz wzrost"></p-dropdown>
+                </div>
+            </div>
+            
         </ng-template>
         <ng-template pTemplate="footer">
             <div class="p-grid p-nogutter p-justify-between">

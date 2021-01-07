@@ -12,6 +12,11 @@ export interface PersonalInformation {
   lostDate?: Date;
 }
 
+export interface ChoiceList {
+  viewValue: any;
+  value: number;
+}
+
 @Component({
   selector: 'app-add-data',
   templateUrl: './add-data.component.html',
