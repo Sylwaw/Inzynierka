@@ -6,6 +6,10 @@ import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DropdownModule } from 'primeng/dropdown';
+import { CheckboxModule } from 'primeng/checkbox';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FormsModule } from '@angular/forms';
+import {DialogModule} from 'primeng/dialog';
 
 
 
@@ -20,7 +24,11 @@ import { DropdownModule } from 'primeng/dropdown';
     RouterModule,
     ButtonModule,
     CardModule,
-    DropdownModule
+    DropdownModule,
+    CheckboxModule,
+    InputTextareaModule,
+    FormsModule,
+    DialogModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

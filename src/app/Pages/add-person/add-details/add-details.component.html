@@ -10,14 +10,39 @@
             <div class="p-fluid p-formgrid p-grid">
                 <div class="p-field">
                     <label for="eyes">Kolor oczu</label>
-                    <p-dropdown [options]="eyes" [(ngModel)]="selectedValue" optionLabel="viewValue" optionValue="value" placeholder="Wybierz kolor"></p-dropdown>
+                    <p-dropdown [options]="eyes" [(ngModel)]="selectedValue" optionLabel="viewValue" optionValue="value"
+                        placeholder="Wybierz kolor"></p-dropdown>
                 </div>
                 <div class="p-field">
                     <label for="height">Wzrost</label>
-                    <p-dropdown [options]="height" [(ngModel)]="selectedValue" optionLabel="viewValue" optionValue="value" placeholder="Wybierz wzrost"></p-dropdown>
+                    <p-dropdown [options]="height" [(ngModel)]="selectedValue" optionLabel="viewValue"
+                        optionValue="value" placeholder="Wybierz wzrost"></p-dropdown>
                 </div>
             </div>
-            
+            <div class="p-field-checkbox">
+                <p-checkbox [(ngModel)]="boolValue" [binary]="true" (click)="switchValue(boolValue)"></p-checkbox>
+                <label for="binary">Poważne zagrożenie życia</label>
+                <p-dialog [(visible)]="display" [style]="{width: '50vw'}">Należy zaznaczyć szczególnie w przypadkach, gdy osoba cierpi na poważną chorobę, przyjmuje na stałe leki, podejmowała w przeszłości próby samobójcze.</p-dialog>
+                <i class="pi pi-info-circle" (mouseover)="showDialog()" (mouseleave)="hideDialog()"></i>
+                
+            </div>
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field" *ngIf="boolValue == true">
+                    <textarea pInputTextarea [(ngModel)]="explainAlert" placeholder="Opisz powody zagrożenia" [style]="{width: '50vw'}"></textarea>
+                </div>    
+            </div>
+            <h5>Content with Filters</h5>
+            <p-dropdown [options]="features" [(ngModel)]="selectedValue" optionLabel="viewValue" [filter]="true"
+                filterBy="viewValue" [showClear]="true" placeholder="Wybierz znaki szczególne">
+                <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value" *ngIf="selectedValue">
+                        <div>{{selectedValue.viewValue}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-feature pTemplate="item">    
+                        <div>{{feature.viewValue}}</div>
+                </ng-template>
+            </p-dropdown>
         </ng-template>
         <ng-template pTemplate="footer">
             <div class="p-grid p-nogutter p-justify-between">
