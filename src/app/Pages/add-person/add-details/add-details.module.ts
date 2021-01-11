@@ -9,7 +9,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FormsModule } from '@angular/forms';
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 
@@ -28,7 +29,8 @@ import {DialogModule} from 'primeng/dialog';
     CheckboxModule,
     InputTextareaModule,
     FormsModule,
-    DialogModule
+    DialogModule,
+    MultiSelectModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
