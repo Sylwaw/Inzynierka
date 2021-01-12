@@ -31,7 +31,7 @@
             <div class="p-field-checkbox">
                 <p-checkbox [(ngModel)]="boolValue" [binary]="true" (click)="switchValue(boolValue)"></p-checkbox>
                 <label for="binary">Poważne zagrożenie życia</label>
-                <p-dialog [(visible)]="display" [style]="{width: '50vw'}">Należy zaznaczyć szczególnie w przypadkach,
+                <p-dialog [(visible)]="display" [style]="{width: '50vw'}" [closable]="false">Należy zaznaczyć szczególnie w przypadkach,
                     gdy osoba cierpi na poważną chorobę, przyjmuje na stałe leki, podejmowała w przeszłości próby
                     samobójcze.</p-dialog>
                 <i class="pi pi-info-circle" (mouseover)="showDialog()" (mouseleave)="hideDialog()"></i>
@@ -53,7 +53,7 @@
                 <div class="p-field">
                     <span class="p-float-label">
                         <textarea pInputTextarea [(ngModel)]="item.description" [style]="{width: '30vw'}" autoResize="autoResize"></textarea>
-                        <label for="float-input"></label> 
+                        <label for="float-input">{{item.label}}</label> 
                         <i class="pi pi-info-circle" (mouseover)="showDialog()" (mouseleave)="hideDialog()"></i>
                     </span>    
                 </div>

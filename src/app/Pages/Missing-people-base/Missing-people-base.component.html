@@ -19,7 +19,7 @@
                       <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{person.town}}</span>
                       <div class="images"><img [src]="person.image"/></div>
                       <br>
-                      <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" (click)="openTabDatabase()"></button>
+                      <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" [routerLink]="['/detail',person.id]"></button>
                   </div>
               </div>
           </div>
@@ -39,7 +39,7 @@
                       <div class="images"><img [src]="person.image"/></div>
                   </div>
                   <div class="product-grid-item-bottom">
-                    <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" (click)="openTabDatabase()"></button>
+                    <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" [routerLink]="['/detail',person.id]"></button>
                   </div>
               </div>
           </div>

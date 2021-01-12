@@ -86,9 +86,7 @@ export class MissingPeopleBaseComponent implements OnInit {
 
   ];
 
-  openTabDatabase() {
-    this.router.navigateByUrl('/database');
-  }
+
 
 
 

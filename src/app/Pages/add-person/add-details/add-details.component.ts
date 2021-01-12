@@ -10,6 +10,7 @@ export interface ChoiceList {
 export interface SelectedFeaturesDescriptions {
   value: number;
   description?: string;
+  label?: string;
 }
 
 @Component({
@@ -103,7 +104,7 @@ export class AddDetailsComponent implements OnInit {
 
   addFeatureDescription(values: ChoiceList[]) {
     // musisz tez zrobic odejmowanie
-    const choice = values[values.length - 1].value;
-    this.selectedFeaturesDescriptions.push({ value: choice, description: '' });
+    const choice = values[values.length - 1];
+    this.selectedFeaturesDescriptions.push({ value: choice.value, description: '', label: choice.viewValue });
   }
 }

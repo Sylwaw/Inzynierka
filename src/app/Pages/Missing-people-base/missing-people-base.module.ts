@@ -4,8 +4,6 @@ import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
 import { MenuItem } from 'primeng/api';
 import { MissingPeopleBaseComponent } from './Missing-people-base.component';
-import { DatabaseModule } from './database/database.module';
-import { DatabaseComponent } from './database/database.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { DataViewModule } from 'primeng/dataview';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +22,6 @@ import { RatingModule } from 'primeng/rating';
     CommonModule,
     ButtonModule,
     AccordionModule,
-    DatabaseModule,
     AppRoutingModule,
     DataViewModule,
     BrowserAnimationsModule,
