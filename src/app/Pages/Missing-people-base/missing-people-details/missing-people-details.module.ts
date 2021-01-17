@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MissingPeopleDetailsComponent } from './missing-people-details.component';
-import { PaginatorModule } from 'primeng/paginator';
 import { ButtonModule } from 'primeng/button';
+import { GalleriaModule } from 'primeng/galleria';
 
 
 
@@ -10,8 +10,8 @@ import { ButtonModule } from 'primeng/button';
   declarations: [MissingPeopleDetailsComponent],
   imports: [
     CommonModule,
-    PaginatorModule,
-    ButtonModule
+    ButtonModule,
+    GalleriaModule
   ]
 })
 export class MissingPeopleDetailsModule { }

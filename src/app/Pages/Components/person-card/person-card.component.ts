@@ -14,7 +14,7 @@ export class PersonCardComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.person);
+    // console.log(this.person);
   }
 
 }

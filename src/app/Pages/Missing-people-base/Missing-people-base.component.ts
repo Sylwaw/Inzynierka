@@ -63,21 +63,21 @@ export class MissingPeopleBaseComponent implements OnInit {
       image: 'assets/foto7.jpg'
     },
     {
-      id: '1',
+      id: '8',
       name: 'Sylwia',
       surname: 'Wawrzuta',
       town: 'Bielsko',
       image: 'assets/foto8.jpg'
     },
     {
-      id: '1',
+      id: '9',
       name: 'Henryk',
       surname: 'Abłomiejko',
       town: 'Urad',
       image: 'assets/foto9.jpg'
     },
     {
-      id: '1',
+      id: '10',
       name: 'Sylwia',
       surname: 'Wawrzuta',
       town: 'Bielsko',
