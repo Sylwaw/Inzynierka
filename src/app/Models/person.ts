@@ -1,7 +1,7 @@
 export interface Person {
-    id: string;
-    name: string;
-    surname: string;
-    town: string;
-    image: string;
+    id?: string;
+    name?: string;
+    surname?: string;
+    town?: string;
+    image?: string;
   }

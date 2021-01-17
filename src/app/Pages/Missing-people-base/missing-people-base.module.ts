@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion';
@@ -14,7 +14,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { RatingModule } from 'primeng/rating';
+import { PersonCardModule } from '../Components/person-card/person-card.module';
+
 
 @NgModule({
   declarations: [MissingPeopleBaseComponent],
@@ -31,8 +32,9 @@ import { RatingModule } from 'primeng/rating';
     InputTextModule,
     RippleModule,
     HttpClientModule,
-    RatingModule,
     FormsModule,
+    PersonCardModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MissingPeopleBaseModule {}

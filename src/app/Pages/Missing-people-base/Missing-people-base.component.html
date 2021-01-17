@@ -26,22 +26,7 @@
       </ng-template>
       <ng-template let-person pTemplate="gridItem">
           <div class="p-col-12 p-md-3">
-              <div class="product-grid-item card">
-                  <div class="product-grid-item-top">
-                      <div>
-                          <i class="pi pi-tag product-category-icon"></i>
-                          <span class="product-category">{{person.town}}</span>
-                      </div>
-                  </div>
-                  <div class="product-grid-item-content">
-                    <div class="product-name">{{person.name}} {{person.surname}}</div>
-                      <!--<div class="product-description">{{person.id}} lat</div>-->
-                      <div class="images"><img [src]="person.image"/></div>
-                  </div>
-                  <div class="product-grid-item-bottom">
-                    <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" [routerLink]="['/detail',person.id]"></button>
-                  </div>
-              </div>
+            <app-person-card [person]="person"></app-person-card>
           </div>
       </ng-template>
   </p-dataView>

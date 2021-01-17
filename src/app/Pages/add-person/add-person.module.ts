@@ -5,11 +5,10 @@ import { ToastModule } from 'primeng/toast';
 import { AddPersonComponent } from './add-person.component';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from 'primeng/api';
-import { AddPhotoComponent } from './add-photo/add-photo.component';
-import { AddDetailsComponent } from './add-details/add-details.component';
 import { AddDataModule } from './add-data/add-data.module';
 import { AddPhotoModule } from './add-photo/add-photo.module';
 import { AddDetailsModule } from './add-details/add-details.module';
+
 
 @NgModule({
   declarations: [AddPersonComponent],

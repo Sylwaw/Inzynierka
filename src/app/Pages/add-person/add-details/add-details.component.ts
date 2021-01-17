@@ -82,7 +82,8 @@ export class AddDetailsComponent implements OnInit {
       {viewValue: 'Twarz', value: 6},
       {viewValue: 'Ramiona', value: 7},
       {viewValue: 'Szyja', value: 8},
-      {viewValue: 'Nogi', value: 9}
+      {viewValue: 'Nogi', value: 9},
+      {viewValue: 'Ubiór', value: 10}
   ];
   }
 
