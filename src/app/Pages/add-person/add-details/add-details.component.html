@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="p-fluid p-formgrid p-grid" *ngFor="let item of selectedFeaturesDescriptions">
-                <div class="p-field">
+                <div id="{{item.value}}" class="p-field">
                     <span class="p-float-label">
                         <textarea pInputTextarea [(ngModel)]="item.description" [style]="{width: '30vw'}" autoResize="autoResize"></textarea>
                         <label for="float-input">{{item.label}}</label> 

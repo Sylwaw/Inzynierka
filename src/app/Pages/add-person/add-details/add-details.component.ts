@@ -30,6 +30,8 @@ export class AddDetailsComponent implements OnInit {
   explainAlert: string;
   display = false;
 
+  tmpListSelectedItems: ChoiceList[] = [];
+
   selectedValueEyes: ChoiceList;
   selectedValueHeightMin: ChoiceList;
   selectedValueHeightMax: ChoiceList;
@@ -40,7 +42,7 @@ export class AddDetailsComponent implements OnInit {
   selectedFeaturesDescriptions: SelectedFeaturesDescriptions[] = [];
 
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.eyes = [
@@ -74,17 +76,17 @@ export class AddDetailsComponent implements OnInit {
     }
 
     this.features = [
-      {viewValue: 'Włosy', value: 1},
-      {viewValue: 'Nos', value: 2},
-      {viewValue: 'Uzębienie', value: 3},
-      {viewValue: 'Ręce', value: 4},
-      {viewValue: 'Sylwetka', value: 5},
-      {viewValue: 'Twarz', value: 6},
-      {viewValue: 'Ramiona', value: 7},
-      {viewValue: 'Szyja', value: 8},
-      {viewValue: 'Nogi', value: 9},
-      {viewValue: 'Ubiór', value: 10}
-  ];
+      { viewValue: 'Włosy', value: 1 },
+      { viewValue: 'Nos', value: 2 },
+      { viewValue: 'Uzębienie', value: 3 },
+      { viewValue: 'Ręce', value: 4 },
+      { viewValue: 'Sylwetka', value: 5 },
+      { viewValue: 'Twarz', value: 6 },
+      { viewValue: 'Ramiona', value: 7 },
+      { viewValue: 'Szyja', value: 8 },
+      { viewValue: 'Nogi', value: 9 },
+      { viewValue: 'Ubiór', value: 10 }
+    ];
   }
 
   prevPage() {
@@ -103,9 +105,36 @@ export class AddDetailsComponent implements OnInit {
     this.display = false;
   }
 
+  // dodawanie opisów poszczególnych cech, usuwanie z listy
   addFeatureDescription(values: ChoiceList[]) {
-    // musisz tez zrobic odejmowanie
-    const choice = values[values.length - 1];
-    this.selectedFeaturesDescriptions.push({ value: choice.value, description: '', label: choice.viewValue });
+    if (this.tmpListSelectedItems.length < values.length) {
+      const choice = values[values.length - 1];
+      this.selectedFeaturesDescriptions.push({ value: choice.value, description: '', label: choice.viewValue });
+    }
+    else {
+      let choiceList: string;
+      for (let i = 0; i < this.tmpListSelectedItems.length; i++) {
+        const obj = values.find(s => s.viewValue === this.tmpListSelectedItems[i].viewValue);
+
+        if (!obj) {
+          choiceList = this.tmpListSelectedItems[i].viewValue;
+          break;
+        }
+      }
+
+      if (choiceList) {
+        const index = this.selectedFeaturesDescriptions.findIndex(s => s.label === choiceList);
+
+        if (index > -1) {
+          const form = document.getElementById(this.selectedFeaturesDescriptions[index].value.toString());
+          this.selectedFeaturesDescriptions.slice(index, 1);
+          form.remove();
+        }
+
+      }
+    }
+
+    this.tmpListSelectedItems = values;
   }
+
 }
