@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MissingPeopleDetailsComponent } from './missing-people-details.component';
 import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+
 
 
 
@@ -11,7 +14,10 @@ import { GalleriaModule } from 'primeng/galleria';
   imports: [
     CommonModule,
     ButtonModule,
-    GalleriaModule
+    GalleriaModule,
+    DialogModule,
+    InputTextModule,
+    
   ]
 })
 export class MissingPeopleDetailsModule { }

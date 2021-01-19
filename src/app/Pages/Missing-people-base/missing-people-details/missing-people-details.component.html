@@ -1,21 +1,80 @@
 <div class="p-grid">
-    
-   <div class="p-col">1
-    <!--<p-galleria [(value)]="images" [responsiveOptions]="responsiveOptions" [containerStyle]="{'max-width': '660px'}" [numVisible]="5"> 
-            <ng-template pTemplate="item" let-item>
-                <img [src]="item.previewImageSrc" style="width: 100%; display: block;" />
-            </ng-template>
-            <ng-template pTemplate="thumbnail" let-item>
-                <div class="p-grid p-nogutter p-justify-center">
-                    <img [src]="item.thumbnailImageSrc" />
-                </div>
-            </ng-template>
-        </p-galleria> -->
-   </div>
-   <!--Wyświetlanie wszystkich danych konkretnej osoby wg id-->
-    <div class="p-col">2
-        <h1></h1>
+    <div class="p-col">
+        <h2>Imię Nazwisko</h2>
+        <div class="smaller">
+            <p-galleria [(value)]="images" [responsiveOptions]="responsiveOptions"
+                [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5" [circular]="true"
+                [showItemNavigators]="true" [showThumbnails]="false" [showIndicators]="true">
+                <ng-template pTemplate="item" let-item>
+                    <img [src]="item.previewImageSrc" style="width: 100%; display: block" />
+                </ng-template>
+                <ng-template pTemplate="thumbnail" let-item>
+                    <div class="p-grid p-nogutter p-justify-center">
+                        <img [src]="item.thumbnailImageSrc" style="display: block" />
+                    </div>
+                </ng-template>
+            </p-galleria>
+            <button pButton pRipple type="button" label="Dodaj zdjęcie" class="p-button-raised p-mb-2"
+                icon="pi pi-plus"></button>
+        </div>
+    </div>
+    <div class="p-col">
+        <div class="vertical-center">
+            <div class="p-d-flex">
+                <p>Wiek w dniu zaginięcia:</p>
+                <button pButton pRipple type="button" icon="pi pi-pencil"
+                    class="p-button-rounded p-button-secondary p-button-text"></button>
+            </div>
+            <div class="p-d-flex">
+                <p>Ostatnie miejsce pobytu:</p>
+                <button pButton pRipple type="button" icon="pi pi-pencil"
+                    class="p-button-rounded p-button-secondary p-button-text"></button>
+            </div>
+            <div class="p-d-flex">
+                <p>Data zaginięcia:</p>
+                <button pButton pRipple type="button" icon="pi pi-pencil"
+                    class="p-button-rounded p-button-secondary p-button-text"></button>
+            </div>
+            <div class="p-d-flex">
+                <p>Kolor oczu:</p>
+                <button pButton pRipple type="button" icon="pi pi-pencil"
+                    class="p-button-rounded p-button-secondary p-button-text"></button>
+            </div>
+            <div class="p-d-flex">
+                <p>Wzrost:</p>
+                <button pButton pRipple type="button" icon="pi pi-pencil"
+                    class="p-button-rounded p-button-secondary p-button-text"></button>
+            </div>
+            <div class="p-d-flex">
+                <p>Opis wyglądu zewnętrznego:</p>
+                <button pButton pRipple type="button" icon="pi pi-pencil"
+                    class="p-button-rounded p-button-secondary p-button-text"></button>
+            </div>
+        </div>
     </div>
 
-    <div class="p-col">3</div>
+    <div class="p-col">
+        <div class="p-d-flex p-flex-column vertical-center smaller">
+            <button pButton pRipple type="button" icon="pi pi-user" (click)="showDialog()" label="Jestem osobą zaginioną"
+                class="p-button-raised p-mb-2 p-button-success"></button>
+        </div>
+        <p-dialog header="Ważne!" [(visible)]="display">
+            Jeśli jesteś osobą zaginioną opisaną na stronie, na której się znajdujesz zostaw swoje dane w polach poniżej lub skontaktuj się z nami.
+            Po weryfikacji Twoje dane zostana usunięte z bazy. 
+            <div class="margin-top-input">
+                <span class="p-float-label p-mb-2">
+                    <input id="float-input" type="text" pInputText> 
+                    <label for="float-input">Numer telefonu</label>
+                </span>
+                <span class="p-float-label p-mt-4">
+                    <input id="float-input" type="text" pInputText> 
+                    <label for="float-input">Email</label>
+                </span>
+            </div>  
+            <div class="p-grid p-nogutter p-justify-end">
+                <p-button label="Zatwierdź" icon="pi pi-check" iconPos="right" (click)="showDialog()"></p-button> 
+            </div>
+             
+        </p-dialog>
+    </div>
 </div>
