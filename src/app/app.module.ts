@@ -12,6 +12,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { MissingPeopleBaseModule } from './Pages/Missing-people-base/missing-people-base.module';
 import { AddPersonModule } from './Pages/add-person/add-person.module';
 import { MissingPeopleDetailsModule } from './Pages/Missing-people-base/missing-people-details/missing-people-details.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselModule } from './carousel/carousel.module';
 import { MainComponent } from './Main.component';
+import { PersonCardModule } from '../Components/person-card/person-card.module';
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import { MainComponent } from './Main.component';
   ],
   imports: [
     CommonModule,
+    PersonCardModule,
     CarouselModule
   ]
 })

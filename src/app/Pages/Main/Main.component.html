@@ -1,4 +1,8 @@
 <app-carousel></app-carousel>
-
+<div class="row">
+    <div class="col-4" *ngFor="let person of persons">
+<app-person-card [person]="person"></app-person-card>
+    </div>
+</div>
 
 
