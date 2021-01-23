@@ -112,6 +112,7 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
           summary: 'Rejected',
           detail: 'You have rejected',
         });
+        this.display = false;
       },
     });
   }
