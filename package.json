@@ -25,8 +25,8 @@
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
     "bootstrap": "^4.5.3",
     "primeflex": "^2.0.0",
+    "primeicons": "^4.1.0",
     "primeng": "^11.0.0",
-    "primeicons": "^4.0.0",
     "rxjs": "~6.5.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

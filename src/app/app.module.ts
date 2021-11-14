@@ -31,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     MissingPeopleBaseModule,
     AccordionModule,
     TabMenuModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
