@@ -9,7 +9,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class AppComponent implements OnInit {
   title = 'inzynierka';
-  items: MenuItem[];
+  items: MenuItem[]; // Elements of the navbar
   activeItem: MenuItem;
 
   ngOnInit() {

@@ -29,6 +29,7 @@ export class AddDetailsComponent implements OnInit {
   boolValue = false;
   explainAlert: string;
   display = false;
+  display1 = false;
 
   tmpListSelectedItems: ChoiceList[] = [];
 
@@ -103,6 +104,14 @@ export class AddDetailsComponent implements OnInit {
 
   hideDialog() {
     this.display = false;
+  }
+
+  showDialog1() {
+    this.display1 = true;
+  }
+
+  hideDialog1() {
+    this.display1 = false;
   }
 
   // dodawanie opisów poszczególnych cech, usuwanie z listy

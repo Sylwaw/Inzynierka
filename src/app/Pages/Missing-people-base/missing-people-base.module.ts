@@ -15,6 +15,9 @@ import { RippleModule } from 'primeng/ripple';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PersonCardModule } from '../Components/person-card/person-card.module';
+import { SearchDetailsModule } from '../Components/search-details/search-details.module';
+
+
 
 
 @NgModule({
@@ -33,7 +36,8 @@ import { PersonCardModule } from '../Components/person-card/person-card.module';
     RippleModule,
     HttpClientModule,
     FormsModule,
-    PersonCardModule
+    PersonCardModule,
+    SearchDetailsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

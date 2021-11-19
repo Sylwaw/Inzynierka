@@ -1,33 +1,44 @@
 <div class="card">
-  <p-dataView #dv [value]="persons" [paginator]="true" paginatorPosition="both" [rows]="12" layout="grid">
-      <ng-template pTemplate="header">
-          <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
-              <p-dropdown placeholder="Sortowanie" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
-              <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-                  <i class="pi pi-search"></i>
-                  <input type="search" pInputText placeholder="Wyszukiwanie">
-              </span>
-              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-          </div>
-      </ng-template>
-      <ng-template let-person pTemplate="listItem">
-          <div class="p-col-12">
-              <div class="product-list-item">
-                  <div class="product-list-detail">
-                      <div class="product-name">{{person.name }} {{person.surname}}</div>
-                     <!-- <div class="product-description">{{person.id}} lat</div> -->
-                      <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{person.town}}</span>
-                      <div class="images"><img [src]="person.image"/></div>
-                      <br>
-                      <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" [routerLink]="['/detail',person.id]"></button>
-                  </div>
-              </div>
-          </div>
-      </ng-template>
-      <ng-template let-person pTemplate="gridItem">
-          <div class="p-col-12 p-md-3">
-            <app-person-card [person]="person"></app-person-card>
-          </div>
-      </ng-template>
+  <p-dataView
+    #dv
+    [value]="persons"
+    [paginator]="true"
+    paginatorPosition="both"
+    [rows]="12"
+    layout="grid"
+  >
+    <ng-template pTemplate="header">
+      <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+        <p-dropdown
+          placeholder="Sortowanie"
+          styleClass="p-mb-2 p-mb-md-0"
+        ></p-dropdown>
+        <div>
+          <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+            <i class="pi pi-search"></i>
+            <input type="search" pInputText placeholder="Wyszukiwanie" />
+          </span>
+          <p-button (click)="showDialog()">Zaawansowane</p-button>
+        </div>
+        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+      </div>
+      <div *ngIf="visible">
+        <app-search-details></app-search-details>
+      </div>
+    </ng-template>
+    <ng-template let-person pTemplate="listItem">
+      <div class="p-col-16">
+        <div class="product-list-item">
+          <app-person-card [person]="person"></app-person-card>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template let-person pTemplate="gridItem">
+      <div class="p-col-18 p-md-2">
+        <app-person-card [person]="person"></app-person-card>
+      </div>
+    </ng-template>
   </p-dataView>
+</div>
+
 

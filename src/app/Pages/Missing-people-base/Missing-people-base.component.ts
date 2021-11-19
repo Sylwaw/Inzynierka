@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Person } from 'src/app/Models/person';
 
+
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'app-Missing-people-base',
@@ -11,6 +12,10 @@ import { Person } from 'src/app/Models/person';
 })
 export class MissingPeopleBaseComponent implements OnInit {
   constructor(private router: Router) {}
+
+  visible = false;
+
+
 
   persons: Person[] = [
     {
@@ -85,6 +90,10 @@ export class MissingPeopleBaseComponent implements OnInit {
     }
 
   ];
+
+  showDialog(){
+    this.visible = !this.visible;
+  }
 
 
 

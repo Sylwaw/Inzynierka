@@ -45,7 +45,9 @@
             <div class="p-fluid p-formgrid p-grid">
                 <div class = "p-field">
                     <label for="features">Szczegóły wyglądu</label>
-                    <p-multiSelect #multiSelect [options]="features" [(ngModel)]="selectedFeatures" [style]="{width: '30vw'}" 
+                    <p-dialog [(visible)]="display1" [style]="{width: '50vw'}" [closable]="false">Jeżeli posiadasz informacje o znakach szczególnych zaginionego, opisz je w tym miejscu</p-dialog>
+                    <i class="pi pi-info-circle" (mouseover)="showDialog1()" (mouseleave)="hideDialog1()"></i>
+                    <p-multiSelect #multiSelect [options]="features" [(ngModel)]="selectedFeatures" [style]="{width: '30vw'}"
                     optionLabel="viewValue" optionValue="value" (onChange)="addFeatureDescription(multiSelect.value)" placeholder="Zaznacz cechy, które chcesz opisać" filter=true filterMatchMode="startsWith"></p-multiSelect>
                 </div>
             </div>
@@ -53,11 +55,10 @@
                 <div id="{{item.value}}" class="p-field">
                     <span class="p-float-label">
                         <textarea pInputTextarea [(ngModel)]="item.description" [style]="{width: '30vw'}" autoResize="autoResize"></textarea>
-                        <label for="float-input">{{item.label}}</label> 
-                        <i class="pi pi-info-circle" (mouseover)="showDialog()" (mouseleave)="hideDialog()"></i>
-                    </span>    
+                        <label for="float-input">{{item.label}}</label>
+                    </span>
                 </div>
-            </div>    
+            </div>
         </ng-template>
         <ng-template pTemplate="footer">
             <div class="p-grid p-nogutter p-justify-between">

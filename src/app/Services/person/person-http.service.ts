@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment} from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Person} from '../../Models/person';
+import { Person } from '../../Models/person';
 
 // serwis widoczny w całej aplikacji
 @Injectable({

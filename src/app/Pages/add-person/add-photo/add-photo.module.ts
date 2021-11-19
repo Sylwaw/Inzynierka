@@ -21,6 +21,7 @@ import { ToastModule } from 'primeng/toast';
     FileUploadModule,
     HttpClientModule,
     ToastModule
-  ]
+  ],
+  exports: [AddPhotoComponent]
 })
 export class AddPhotoModule { }

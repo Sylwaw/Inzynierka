@@ -10,7 +10,8 @@ import { MessageService } from 'primeng/api';
 export class AddPersonComponent implements OnInit {
   constructor(public messageService: MessageService) {}
 
-  items: MenuItem[];
+
+  items: MenuItem[]; // elements of adding people form
 
   ngOnInit(): void {
     this.items = [

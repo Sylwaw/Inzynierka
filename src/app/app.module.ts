@@ -15,6 +15,8 @@ import { MissingPeopleDetailsModule } from './Pages/Missing-people-base/missing-
 import { HttpClientModule } from '@angular/common/http';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     AccordionModule,
     TabMenuModule,
     HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],

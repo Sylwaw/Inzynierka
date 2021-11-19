@@ -1,3 +1,4 @@
+// Person interface
 export interface Person {
     id?: string;
     name?: string;

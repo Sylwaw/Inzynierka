@@ -6,7 +6,7 @@ import { PersonCardModule } from '../Components/person-card/person-card.module';
 
 @NgModule({
   declarations: [
-    MainComponent,
+    MainComponent
 
   ],
   imports: [

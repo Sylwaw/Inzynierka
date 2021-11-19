@@ -12,6 +12,8 @@ export interface PersonalInformation {
   lostDate?: Date;
 }
 
+
+
 export interface ChoiceList {
   viewValue: any;
   value: number;
@@ -23,11 +25,12 @@ export interface ChoiceList {
   styleUrls: ['./add-data.component.css'],
 })
 export class AddDataComponent implements OnInit {
+
+  constructor(private router: Router) {}
   personalInformation: PersonalInformation = {};
 
   submitted = false;
-
-  constructor(private router: Router) {}
+  today = new Date;
 
   ngOnInit() {}
 
@@ -45,4 +48,9 @@ export class AddDataComponent implements OnInit {
     }
     this.submitted = true;
   }
+
+
+
+
+
 }

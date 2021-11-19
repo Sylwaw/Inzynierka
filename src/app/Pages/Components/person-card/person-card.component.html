@@ -1,19 +1,19 @@
-
+<!--One card from the base (before details)-->
 
 <div class="product-grid-item card">
     <div class="product-grid-item-top">
         <div>
-            <i class="pi pi-tag product-category-icon"></i>
+            <i class="pi pi-user product-category-icon"></i>
             <span class="product-category">{{person.town}}</span>
         </div>
     </div>
     <div class="product-grid-item-content">
         <div class="product-name">{{person.name}} {{person.surname}}</div>
-        <!--<div class="product-description">{{person.id}} lat</div>-->
-       <div class="images"><img [src]="person.image" /></div>
+        <div class="product-description">{{person.id}} lat</div>
+        <div class="images"><img [src]="person.image" /></div>
     </div>
     <div class="product-grid-item-bottom">
         <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success"
-            [routerLink]="['/detail', person.id]"></button>
+            [routerLink]="['/detail', person.id]"></button> <!--Exact person details window-->
     </div>
 </div>

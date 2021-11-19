@@ -9,7 +9,8 @@ import { Person } from 'src/app/Models/person';
 })
 export class PersonCardComponent implements OnInit {
 
-  @Input() person: Person;
+
+  @Input() person: Person; // Getting data from parent component
 
   constructor(private router: Router) { }
 
