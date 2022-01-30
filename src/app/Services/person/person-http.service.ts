@@ -1,21 +1,27 @@
 import { Injectable } from '@angular/core';
-import { environment} from '../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Person } from '../../Models/person';
+import { IPersonCard } from '../../Models/IPersonCard';
+import { IPersonDetails } from '../../Models/IPersonDetails';
 
 // serwis widoczny w całej aplikacji
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class PersonHttpService {
+  linkHttp = `${environment.apiUrl}/api/Person/`;
 
-linkHttp = `${environment.apiUrl}/api/person/`;
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+  getPeopleById(id: number): Observable<IPersonDetails> {
+    return this.http.get<IPersonDetails>(this.linkHttp + 'peopleByID' + id);
+  }
 
-  getPersonById(id: number): Observable<Person> {
-    return this.http.get<Person>(this.linkHttp + id);
+  getAllPeople(): Observable<IPersonCard[]> {
+    const params = new HttpParams();
+    //params.set('page', numberOfPeople.toString());
+
+    return this.http.get<IPersonCard[]>(this.linkHttp + 'getAllPeople');
   }
 }

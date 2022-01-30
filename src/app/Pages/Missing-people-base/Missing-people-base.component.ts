@@ -1,7 +1,10 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Person } from 'src/app/Models/person';
+import { IPersonCard } from 'src/app/Models/IPersonCard';
+import { PersonHttpService } from '../../Services/person/person-http.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import {SelectItem} from 'primeng/api';
 
 
 @Component({
@@ -11,95 +14,64 @@ import { Person } from 'src/app/Models/person';
   styleUrls: ['./Missing-people-base.component.scss'],
 })
 export class MissingPeopleBaseComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private personHttpService: PersonHttpService,
+    private messageService: MessageService
+  ) {}
 
   visible = false;
 
+  person: IPersonCard;
+  personList: IPersonCard[];
+  persons: IPersonCard[] = [];
+  sortOptions: SelectItem[];
 
+    sortKey: string;
 
-  persons: Person[] = [
-    {
-      id: '1',
-      name: 'Henryk',
-      surname: 'Abłomiejko',
-      town: 'Urad',
-      image: 'assets/foto1.jpg'
-    },
-    {
-      id: '2',
-      name: 'Rafał',
-      surname: 'Adach',
-      town: '-',
-      image: 'assets/foto2.jpg'
-    },
-    {
-      id: '3',
-      name: 'Mariusz',
-      surname: 'Adamczewski',
-      town: '-',
-      image: 'assets/foto3.jpg'
-    },
-    {
-      id: '4',
-      name: 'Paweł',
-      surname: 'Adamczyk',
-      town: '-',
-      image: 'assets/foto4.jpg'
-    },
-    {
-      id: '5',
-      name: 'Sylwiaaaaa',
-      surname: 'Wawrzuta',
-      town: 'Bielsko',
-      image: 'assets/foto5.jpg'
-    },
-    {
-      id: '6',
-      name: 'Sylwia',
-      surname: 'Wawrzuta',
-      town: 'Bielsko',
-      image: 'assets/foto6.jpg'
-    },
-    {
-      id: '7',
-      name: 'Sylwia',
-      surname: 'Wawrzuta',
-      town: 'Bielsko',
-      image: 'assets/foto7.jpg'
-    },
-    {
-      id: '8',
-      name: 'Sylwia',
-      surname: 'Wawrzuta',
-      town: 'Bielsko',
-      image: 'assets/foto8.jpg'
-    },
-    {
-      id: '9',
-      name: 'Henryk',
-      surname: 'Abłomiejko',
-      town: 'Urad',
-      image: 'assets/foto9.jpg'
-    },
-    {
-      id: '10',
-      name: 'Sylwia',
-      surname: 'Wawrzuta',
-      town: 'Bielsko',
-      image: 'assets/foto10.jpg'
-    }
+    sortField: string;
 
+    sortOrder: number;
+
+  ngOnInit() {
+    this.getAllPeople();
+    this.sortOptions = [
+      {label: 'Wiek rosnąco', value: '!yearOfBirth'},
+      {label: 'Wiek malejąco', value: 'yearOfBirth'},
   ];
 
-  showDialog(){
+
+  }
+
+  showDialog() {
     this.visible = !this.visible;
   }
 
+  onSortChange(event) {
+    let value = event.value;
 
+    if (value.yearOfBirth('!') === 0) {
+        this.sortOrder = -1;
+        this.sortField = value.substring(1, value.length);
+    }
+    else {
+        this.sortOrder = 1;
+        this.sortField = value;
+    }
+}
 
-
-
-  ngOnInit() {
-
+  getAllPeople(): void {
+    this.personHttpService.getAllPeople().subscribe(
+    (src) => {
+      this.personList = src;
+    },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Rejected',
+          detail: 'Nie udane pobranie z bazy',
+        });
+      }
+    );
   }
 }

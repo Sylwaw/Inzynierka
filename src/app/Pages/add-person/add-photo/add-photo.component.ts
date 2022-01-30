@@ -18,13 +18,13 @@ export class AddPhotoComponent implements OnInit {
   ngOnInit() {
   }
 
-    onUpload(event) {
-        for (const file of event.files) {
-            this.uploadedFiles.push(file);
-        }
+    // onUpload(event) {
+    //     for (const file of event.files) {
+    //         this.uploadedFiles.push(file);
+    //     }
 
-        this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-    }
+    //     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+    // }
 
   nextPage() {
     this.router.navigateByUrl('/add/details');

@@ -9,34 +9,34 @@
         <ng-template pTemplate="content">
             <div class="p-fluid">
                 <div class="p-field">
-                    <label for="firstname">Imię</label>
-                    <input #firstname="ngModel" id="firstname" type="text" required pInputText [(ngModel)]="personalInformation.firstname" [ngClass]="{'p-invalid': (firstname.invalid && submitted) || (firstname.dirty && firstname.invalid)}">
-                    <small *ngIf="(firstname.invalid && submitted) || (firstname.dirty && firstname.invalid)" class="p-error">Imię jest wymagane.</small>
+                    <label for="name">Imię</label>
+                    <input #name="ngModel" id="name" type="text" required pInputText [(ngModel)]="personDetails.name" [ngClass]="{'p-invalid': (name.invalid && submitted) || (name.dirty && name.invalid)}">
+                    <small *ngIf="(name.invalid && submitted) || (name.dirty && name.invalid)" class="p-error">Imię jest wymagane.</small>
                 </div>
                 <div class="p-field">
                     <label for="secondName">Drugie imię (Opcjonalnie)</label>
-                    <input #secondName="ngModel" id="secondName" type="text" pInputText [(ngModel)]="personalInformation.secondName" [ngClass]="{'p-invalid': (secondName.invalid && submitted) || (secondName.dirty && secondName.invalid)}">
+                    <input #secondName="ngModel" id="secondName" type="text" pInputText [(ngModel)]="personDetails.secondName" [ngClass]="{'p-invalid': (secondName.invalid && submitted) || (secondName.dirty && secondName.invalid)}">
                 </div>
                 <div class="p-field">
-                    <label for="lastname">Nazwisko</label>
-                    <input #lastname="ngModel" id="lastname" type="text" required pInputText [(ngModel)]="personalInformation.lastname" [ngClass]="{'p-invalid': (lastname.invalid && submitted) || (lastname.dirty && lastname.invalid)}">
-                    <small class="p-error" *ngIf="(lastname.invalid && submitted )|| (lastname.dirty && lastname.invalid)">Nazwisko jest wymagane.</small>
+                    <label for="surname">Nazwisko</label>
+                    <input #surname="ngModel" id="surname" type="text" required pInputText [(ngModel)]="personDetails.surname" [ngClass]="{'p-invalid': (surname.invalid && submitted) || (surname.dirty && surname.invalid)}">
+                    <small class="p-error" *ngIf="(surname.invalid && submitted )|| (surname.dirty && surname.invalid)">Nazwisko jest wymagane.</small>
                 </div>
                 <div class="p-field">
-                    <label for="age">Rok urodzenia</label>
-                    <input #age="ngModel" id="age" type="number" required pInputText [(ngModel)]="personalInformation.birthDate" [ngClass]="{'p-invalid': (age.invalid && submitted) || (age.dirty && age.invalid)}">
-                    <small class="p-error" *ngIf="(age.invalid && submitted) || (age.dirty && age.invalid)">Data urodzenia jest wymagana.</small>
+                    <label for="yearOfBirth">Rok urodzenia</label>
+                    <input #yearOfBirth="ngModel" id="yearOfBirth" type="number" required pInputText [(ngModel)]="personDetails.yearOfBirth" [ngClass]="{'p-invalid': (yearOfBirth.invalid && submitted) || (yearOfBirth.dirty && yearOfBirth.invalid)}">
+                    <small class="p-error" *ngIf="(yearOfBirth.invalid && submitted) || (yearOfBirth.dirty && yearOfBirth.invalid)">Data urodzenia jest wymagana.</small>
                 </div>
                 <div class="p-field">
-                    <label for="lastPlace">Ostatnie miejsce pobytu</label>
-                    <input #lastPlace="ngModel" id="lastPlace" type="text" required pInputText [(ngModel)]="personalInformation.lastPlace" [ngClass]="{'p-invalid': (lastPlace.invalid && submitted) || (lastPlace.dirty && lastPlace.invalid)}">
-                    <small class="p-error" *ngIf="(lastPlace.invalid && submitted )|| (lastPlace.dirty && lastPlace.invalid)">Ostatnie miejsce pobytu jest wymagane.</small>
+                    <label for="city">Ostatnie miejsce pobytu</label>
+                    <input #city="ngModel" id="city" type="text" required pInputText [(ngModel)]="personDetails.city" [ngClass]="{'p-invalid': (city.invalid && submitted) || (city.dirty && city.invalid)}">
+                    <small class="p-error" *ngIf="(city.invalid && submitted )|| (city.dirty && city.invalid)">Ostatnie miejsce pobytu jest wymagane.</small>
                 </div>
                 <div class="p-field lost-date" >
                     <label for="float-input">Data zaginięcia</label>
-                    <p-calendar #lostDate="ngModel" id="lostDate" type="date" [(ngModel)]="personalInformation.lostDate" [ngClass]="{'p-invalid': (lostDate.invalid && submitted) || (lostDate.dirty && lostDate.invalid)}"></p-calendar>
-                    <small class="p-error" *ngIf="(lostDate.invalid && submitted ) || (lostDate.dirty && lostDate.invalid)">Data zaginięcia jest wymagana.</small>
-                    <small class="p-error" *ngIf="personalInformation.lostDate > today">Data zaginięcia nie może być późniejsza niż data dzisiejsza.</small>
+                    <p-calendar #dateOfDissapear="ngModel" id="dateOfDissapear" type="date" [(ngModel)]="personDetails.dateOfDissapear" [ngClass]="{'p-invalid': (dateOfDissapear.invalid && submitted) || (dateOfDissapear.dirty && dateOfDissapear.invalid)}"></p-calendar>
+                    <small class="p-error" *ngIf="(dateOfDissapear.invalid && submitted ) || (dateOfDissapear.dirty && dateOfDissapear.invalid)">Data zaginięcia jest wymagana.</small>
+                    <small class="p-error" *ngIf="personDetails.dateOfDissapear > today">Data zaginięcia nie może być późniejsza niż data dzisiejsza.</small>
                 </div>
             </div>
 

@@ -3,14 +3,14 @@
 <div class="product-grid-item card">
     <div class="product-grid-item-top">
         <div>
-            <i class="pi pi-user product-category-icon"></i>
-            <span class="product-category">{{person.town}}</span>
+            <i class="pi pi-map-marker product-category-icon"></i>
+            <span class="product-category">{{person.city}}</span>
         </div>
     </div>
     <div class="product-grid-item-content">
         <div class="product-name">{{person.name}} {{person.surname}}</div>
-        <div class="product-description">{{person.id}} lat</div>
-        <div class="images"><img [src]="person.image" /></div>
+        <div class="product-description">{{actualAge(person.yearOfBirth)}} lat</div>
+        <div class="images"><img [src]="'assets/' + person.picture" /></div>
     </div>
     <div class="product-grid-item-bottom">
         <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success"

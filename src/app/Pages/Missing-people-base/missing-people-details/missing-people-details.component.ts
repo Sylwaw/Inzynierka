@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Person } from 'src/app/Models/person';
+import { IPersonCard } from 'src/app/Models/IPersonCard';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
-import {PersonHttpService} from '../../../Services/person/person-http.service';
+import { PersonHttpService } from '../../../Services/person/person-http.service';
+import { IPersonDetails } from 'src/app/Models/IPersonDetails';
 
 export interface Photos {
   previewImageSrc?: string;
@@ -18,9 +19,10 @@ export interface Photos {
   providers: [ConfirmationService, MessageService],
 })
 export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
-  person: Person;
+  person: IPersonDetails;
 
-  display = false;
+  displayIfClientIsLostPerson = false;
+  displayToAddPhoto = false;
   paramRouteSub: Subscription;
 
   images: Photos[] = [
@@ -69,24 +71,28 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.paramRouteSub = this.activatedRoute.params.subscribe((params) => {
       const personId = +params.id;
-      this.getPersonById(personId);
+      this.getPeopleById(personId);
     });
   }
 
-  getPersonById(id: number) {
-    this.personHttpService.getPersonById(id).subscribe((src) => {
+  getPeopleById(id: number) {
+    this.personHttpService.getPeopleById(id).subscribe((src) => {
       this.person = src;
     }, (error) => {
       this.messageService.add({
         severity: 'error',
         summary: 'Rejected',
-        detail: 'Nie udane pobranie ludzia:D z bazy',
+        detail: 'Nie udane pobranie z bazy',
       });
     });
   }
 
   showDialog() {
-    this.display = !this.display;
+    this.displayIfClientIsLostPerson = !this.displayIfClientIsLostPerson;
+  }
+
+  showDialogToAddPhoto() {
+    this.displayToAddPhoto = true;
   }
 
   back() {
@@ -104,7 +110,7 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
           summary: 'Confirmed',
           detail: 'You have accepted',
         });
-        this.display = false;
+        this.displayIfClientIsLostPerson = false;
       },
       reject: () => {
         this.messageService.add({
@@ -112,7 +118,7 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
           summary: 'Rejected',
           detail: 'You have rejected',
         });
-        this.display = false;
+        this.displayIfClientIsLostPerson = false;
       },
     });
   }

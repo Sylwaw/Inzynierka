@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import * as internal from 'events';
 
 @Component({
   selector: 'app-search-details',
   templateUrl: './search-details.component.html',
   styleUrls: ['./search-details.component.css']
 })
+
+
 export class SearchDetailsComponent implements OnInit {
 
-  constructor() { }
+
   searchName = '';
   searchSurname = '';
   searchAge = null;
@@ -17,8 +20,21 @@ export class SearchDetailsComponent implements OnInit {
   searchWeightTo = null;
   searchEyeColor = '';
   searchHairColor = '';
+  eyes = [];
+
+  constructor() {
+
+    this.eyes = ['zielone', 'czerwone', 'czarne'];
+  }
+
+
+
+
+
 
   ngOnInit(): void {
+
+
 
   }
 

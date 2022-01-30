@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { CarouselModule } from './carousel/carousel.module';
 import { MainComponent } from './Main.component';
 import { PersonCardModule } from '../Components/person-card/person-card.module';
+import {InputTextModule} from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
+import {PaginatorModule} from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,10 @@ import { PersonCardModule } from '../Components/person-card/person-card.module';
   imports: [
     CommonModule,
     PersonCardModule,
-    CarouselModule
+    CarouselModule,
+    InputTextModule,
+    FormsModule,
+    PaginatorModule
   ]
 })
 export class MainModule { }

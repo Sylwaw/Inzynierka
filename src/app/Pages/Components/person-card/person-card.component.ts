@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Person } from 'src/app/Models/person';
+// import { Http2ServerRequest } from 'http2';
+import { MessageService } from 'primeng/api';
+import { IPersonCard } from 'src/app/Models/IPersonCard';
+import { getTypeParameterOwner } from 'typescript';
+import {PersonHttpService} from '../../../Services/person/person-http.service';
 
 @Component({
   selector: 'app-person-card',
@@ -10,12 +14,31 @@ import { Person } from 'src/app/Models/person';
 export class PersonCardComponent implements OnInit {
 
 
-  @Input() person: Person; // Getting data from parent component
+  @Input() person: IPersonCard; // Getting data from parent component
+  personList: IPersonCard[];
+  imageSource: string = "assets/";
+  name: string;
+  imagePath: string = "";
 
-  constructor(private router: Router) { }
+
+
+  constructor(
+    private router: Router,
+    private personHttpService: PersonHttpService,
+    private messageService: MessageService) {
+
+  }
 
   ngOnInit(): void {
     // console.log(this.person);
   }
+
+  actualAge(yearOfBirth: number): number {
+      var actualYear = new Date().getFullYear();
+      var actualAge = actualYear - yearOfBirth;
+      return actualAge;
+  }
+
+
 
 }

@@ -1,22 +1,28 @@
 <div class="card">
   <p-dataView
     #dv
-    [value]="persons"
+    [value]="personList"
     [paginator]="true"
     paginatorPosition="both"
     [rows]="12"
     layout="grid"
+    filterBy="name"
+    [sortField]="sortField"
+    [sortOrder]="sortOrder"
   >
     <ng-template pTemplate="header">
       <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
         <p-dropdown
           placeholder="Sortowanie"
           styleClass="p-mb-2 p-mb-md-0"
+          [options]="sortOptions"
+          [(ngModel)]="sortKey"
+          (onChange)="onSortChange($event)"
         ></p-dropdown>
         <div>
           <span class="p-input-icon-left p-mb-2 p-mb-md-0">
             <i class="pi pi-search"></i>
-            <input type="search" pInputText placeholder="Wyszukiwanie" />
+            <input type="search" pInputText placeholder="Wyszukaj" (input)="dv.filter($event.target.value)">
           </span>
           <p-button (click)="showDialog()">Zaawansowane</p-button>
         </div>

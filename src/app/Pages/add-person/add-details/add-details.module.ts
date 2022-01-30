@@ -11,7 +11,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { MultiSelectModule } from 'primeng/multiselect';
-
+import { MessageService } from 'primeng/api';
 
 
 // tslint:disable-next-line: no-unused-expression
@@ -33,5 +33,6 @@ import { MultiSelectModule } from 'primeng/multiselect';
     MultiSelectModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [MessageService],
 })
 export class AddDetailsModule { }

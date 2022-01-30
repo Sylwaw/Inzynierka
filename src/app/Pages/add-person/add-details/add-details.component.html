@@ -31,9 +31,20 @@
             <div class="p-field-checkbox">
                 <p-checkbox [(ngModel)]="boolValue" [binary]="true" (click)="switchValue(boolValue)"></p-checkbox>
                 <label for="binary">Poważne zagrożenie życia</label>
-                <p-dialog [(visible)]="display" [style]="{width: '50vw'}" [closable]="false">Należy zaznaczyć szczególnie w przypadkach,
-                    gdy osoba cierpi na poważną chorobę, przyjmuje na stałe leki, podejmowała w przeszłości próby
-                    samobójcze.</p-dialog>
+                <p-dialog [(visible)]="display" [style]="{width: '50vw'}" [closable]="false">WAŻNE!<br> Zaznacz i opisz tylko w przypadku osoby:
+                <br> -małoletniej w wieku do 10 lat
+                <br> -małoletniej w wieku od 11 do 13 lat, zaginionej po raz pierwszy
+                <br> -niezdolnej do samodzielnej egzystencji
+                <br> -wymagającej stałego przyjmowania leków, których brak przyjęcia w odpowiednim czasie stanowi
+                zagrożenie jej życia
+                <br> -zaginionej w związku z realnym podejrzeniem popełnienia na jej szkodę przestępstwa przeciwko życiu
+                lub wolności
+                <br> -której zachowanie w realny sposób wskazywało na bezpośredni zamiar popełnienia samobójstwa,
+                a natychmiastowe podjęcie czynności poszukiwawczych oraz zaangażowanie znacznych sił i środków
+                z dużym prawdopodobieństwem przyczyni się do zapobieżenia zamachu samobójczego
+                <br> -zaginionej w warunkach atmosferycznych zagrażających jej życiu w przypadku niezwłocznego
+                nieodnalezienia
+                </p-dialog>
                 <i class="pi pi-info-circle" (mouseover)="showDialog()" (mouseleave)="hideDialog()"></i>
             </div>
             <div class="p-fluid p-formgrid p-grid">
@@ -63,7 +74,7 @@
         <ng-template pTemplate="footer">
             <div class="p-grid p-nogutter p-justify-between">
                 <p-button label="Wstecz" (click)="prevPage()" icon="pi pi-angle-left"></p-button>
-                <p-button label="Zatwierdź" icon="pi pi-check" iconPos="right"></p-button>
+                <p-button label="Zatwierdź" (click)="confirm()"  icon="pi pi-check" iconPos="right"></p-button>
             </div>
         </ng-template>
 

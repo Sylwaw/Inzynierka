@@ -37,3 +37,8 @@ img {
   top: 0;
   z-index: 1000;
 }
+
+.important{
+  background-color: red;
+  color: white;
+}

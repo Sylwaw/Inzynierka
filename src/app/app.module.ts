@@ -13,13 +13,15 @@ import { MissingPeopleBaseModule } from './Pages/Missing-people-base/missing-peo
 import { AddPersonModule } from './Pages/add-person/add-person.module';
 import { MissingPeopleDetailsModule } from './Pages/Missing-people-base/missing-people-details/missing-people-details.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AddImageModule } from './Pages/Components/add-image/add-image.module';
+
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     MissingPeopleBaseModule,
     AccordionModule,
     TabMenuModule,
-    HttpClientModule
-
+    HttpClientModule,
+    AddImageModule
   ],
   providers: [],
   bootstrap: [AppComponent],

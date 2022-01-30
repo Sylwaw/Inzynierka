@@ -13,15 +13,20 @@
     <label for="float-input">Wiek</label>
   </span>
   <span class="p-float-label">
-    <input id="float-input" type="text" pInputText [(ngModel)]="searchName" />
-    <label for="float-input">Wzrost od</label>
-    <input id="float-input" type="text" pInputText [(ngModel)]="searchName" />
-    <label for="float-input">Wzrost do</label>
+    <input id="float-input-heightfrom" type="text" pInputText [(ngModel)]="searchHeightFrom" />
+    <label for="float-input-heightfrom">Wzrost od</label>
+    <input id="float-input-heightto" type="text" pInputText [(ngModel)]="searchHeightTo" />
+    <label for="float-input-heightto">Wzrost do</label>
   </span>
-  <span class="p-float-label">
-    <input id="float-input" type="text" pInputText [(ngModel)]="searchName" />
-    <label for="float-input">Waga od</label>
-    <input id="float-input" type="text" pInputText [(ngModel)]="searchName" />
-    <label for="float-input">Waga do</label>
-  </span>
+    <span class="p-float-label">
+      <input id="float-input-weightfrom" type="text" pInputText [(ngModel)]="searchWeightFrom" />
+      <label for="float-input-weightfrom">Waga od</label>
+      <input id="float-input-weightto" type="text" pInputText [(ngModel)]="searchWeightTo" />
+      <label for="float-input-weightt">Waga do</label>
+    </span>
+      <span class="p-float-label">
+        <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="eyes" [(ngModel)]="searchEyeColor" optionLabel="name"></p-dropdown>
+        <label for="dropdown">Dropdown</label>
+    </span>
+
 </div>

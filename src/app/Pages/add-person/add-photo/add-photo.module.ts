@@ -7,6 +7,8 @@ import { CardModule } from 'primeng/card';
 import { FileUploadModule } from 'primeng/fileupload';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
+import { AddImageModule } from '../../Components/add-image/add-image.module';
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -20,7 +22,9 @@ import { ToastModule } from 'primeng/toast';
     CardModule,
     FileUploadModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
+    AddImageModule,
+    DialogModule
   ],
   exports: [AddPhotoComponent]
 })

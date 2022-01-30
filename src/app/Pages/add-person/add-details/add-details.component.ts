@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { MultiSelect } from 'primeng/multiselect';
 
 export interface ChoiceList {
@@ -43,7 +44,7 @@ export class AddDetailsComponent implements OnInit {
   selectedFeaturesDescriptions: SelectedFeaturesDescriptions[] = [];
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private messageService: MessageService) { }
 
   ngOnInit() {
     this.eyes = [
@@ -77,21 +78,19 @@ export class AddDetailsComponent implements OnInit {
     }
 
     this.features = [
-      { viewValue: 'Włosy', value: 1 },
-      { viewValue: 'Nos', value: 2 },
-      { viewValue: 'Uzębienie', value: 3 },
-      { viewValue: 'Ręce', value: 4 },
-      { viewValue: 'Sylwetka', value: 5 },
-      { viewValue: 'Twarz', value: 6 },
-      { viewValue: 'Ramiona', value: 7 },
-      { viewValue: 'Szyja', value: 8 },
-      { viewValue: 'Nogi', value: 9 },
-      { viewValue: 'Ubiór', value: 10 }
+      { viewValue: 'Tatuaże', value: 1 },
+      { viewValue: 'Blizny', value: 2 },
+      { viewValue: 'Ubiór', value: 3 },
+      { viewValue: 'Opis innych cech', value: 4 },
     ];
   }
 
   prevPage() {
     this.router.navigateByUrl('/add/photo');
+  }
+
+  confirm(){
+    this.router.navigateByUrl('/main');
   }
 
   switchValue(boolVal: boolean) {

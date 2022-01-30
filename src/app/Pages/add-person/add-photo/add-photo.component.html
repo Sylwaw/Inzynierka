@@ -1,34 +1,23 @@
-<!--Adding person's photo-->>
+<!--Adding person's photo-->
 <div class="stepsdemo-content">
-    <p-card>
-        <ng-template pTemplate="title">
-            Zdjęcie zaginionego
-        </ng-template>
-        <ng-template pTemplate="subtitle">
-            Wczytaj zdjęcia osoby zaginionej
-        </ng-template>
-        <ng-template pTemplate="content">
-            <p-toast></p-toast>
+  <p-card>
+    <app-add-image></app-add-image>
 
-            <div class="card">
-                <h5>Advanced</h5>
-                <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)" multiple="multiple"
-                    accept="image/*" maxFileSize="1000000">
-                    <ng-template pTemplate="content">
-                        <ul *ngIf="uploadedFiles.length">
-                            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                        </ul>
-                    </ng-template>
-                </p-fileUpload>
-
-            </div>
-        </ng-template>
-        <ng-template pTemplate="footer">
-            <div class="p-grid p-nogutter p-justify-between">
-                <p-button label="Wstecz" (click)="prevPage()" icon="pi pi-angle-left"></p-button>
-                <p-button label="Dalej" (click)="nextPage()" icon="pi pi-angle-right" iconPos="right"></p-button>
-            </div>
-        </ng-template>
-    </p-card>
+    <ng-template pTemplate="footer">
+      <div class="p-grid p-nogutter p-justify-between">
+        <p-button
+          label="Wstecz"
+          (click)="prevPage()"
+          icon="pi pi-angle-left"
+        ></p-button>
+        <p-button
+          label="Dalej"
+          (click)="nextPage()"
+          icon="pi pi-angle-right"
+          iconPos="right"
+        ></p-button>
+      </div>
+    </ng-template>
+  </p-card>
 </div>
 <router-outlet></router-outlet>

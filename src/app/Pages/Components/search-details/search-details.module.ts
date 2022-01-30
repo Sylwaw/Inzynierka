@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {InputTextModule} from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { SearchDetailsComponent } from './search-details.component';
+import {DropdownModule} from 'primeng/dropdown';
+
 
 
 
@@ -13,7 +15,8 @@ import { SearchDetailsComponent } from './search-details.component';
   imports: [
     CommonModule,
     InputTextModule,
-    FormsModule
+    FormsModule,
+    DropdownModule
   ],
   exports: [
     SearchDetailsComponent

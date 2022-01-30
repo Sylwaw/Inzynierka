@@ -1,4 +1,24 @@
 <app-carousel></app-carousel>
+<h4>Osoby zaginione najbliżej Ciebie</h4>
+
+<div class = "locationUnavailable" *ngIf="!ifLocationAvailable">
+  <p>Nie udało się pobrać Twojej lokalizacji - wpisz poniżej nazwę miasta, w którym się znajdujesz.</p>
+  <span class="p-float-label">
+      <input id="float-input" type="text" pInputText [(ngModel)]="localization">
+      <label for="float-input">Twoja lokalizacja</label>
+  </span>
+</div>
+
+
+<p>Podaj odległość w jakiej poszukujesz</p>
+<span class="p-float-label">
+  <input id="float-input" type="text" pInputText [(ngModel)]="distance">
+  <label for="float-input">Odległość w km</label>
+</span>
+
+<p>Twoje położenie: Latitude: {{latitude}}, Longitude: {{longitude}}</p>
+
+<!-- <p-paginator [rows]="10" [totalRecords]="120" [rowsPerPageOptions]="[10,20,30]"></p-paginator> -->
 <div class="row">
     <div class="col-4" *ngFor="let person of persons">
 <app-person-card [person]="person"></app-person-card>

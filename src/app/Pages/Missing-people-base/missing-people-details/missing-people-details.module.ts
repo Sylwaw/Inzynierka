@@ -8,8 +8,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-
-
+import { AddImageModule } from '../../Components/add-image/add-image.module';
+import { CardModule } from 'primeng/card';
 
 
 @NgModule({
@@ -22,6 +22,8 @@ import { ToastModule } from 'primeng/toast';
     DialogModule,
     InputTextModule,
     ConfirmDialogModule,
+    AddImageModule,
+    CardModule
   ],
   providers: [ConfirmationService]
 })

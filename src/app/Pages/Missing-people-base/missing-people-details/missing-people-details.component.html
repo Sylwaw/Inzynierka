@@ -16,16 +16,15 @@
                     </div>
                 </ng-template>
             </p-galleria>
-            <button pButton pRipple type="button" label="Dodaj zdjęcie" class="p-button-raised p-mb-2"
+            <button pButton pRipple type="button" (click) = "showDialogToAddPhoto()" label="Dodaj zdjęcie" class="p-button-raised p-mb-2"
                 icon="pi pi-plus"></button>
         </div>
+
     </div>
     <div class="p-col">
         <div class="vertical-center">
             <div class="p-d-flex">
-                <p>Wiek w dniu zaginięcia:</p>
-                <button pButton pRipple type="button" icon="pi pi-pencil"
-                    class="p-button-rounded p-button-secondary p-button-text"></button>
+                <p>Aktualny wiek:</p>
             </div>
             <div class="p-d-flex">
                 <p>Ostatnie miejsce pobytu:</p>
@@ -34,18 +33,12 @@
             </div>
             <div class="p-d-flex">
                 <p>Data zaginięcia:</p>
-                <button pButton pRipple type="button" icon="pi pi-pencil"
-                    class="p-button-rounded p-button-secondary p-button-text"></button>
             </div>
             <div class="p-d-flex">
                 <p>Kolor oczu:</p>
-                <button pButton pRipple type="button" icon="pi pi-pencil"
-                    class="p-button-rounded p-button-secondary p-button-text"></button>
             </div>
             <div class="p-d-flex">
                 <p>Wzrost:</p>
-                <button pButton pRipple type="button" icon="pi pi-pencil"
-                    class="p-button-rounded p-button-secondary p-button-text"></button>
             </div>
             <div class="p-d-flex">
                 <p>Opis wyglądu zewnętrznego:</p>
@@ -60,7 +53,7 @@
             <button pButton pRipple type="button" icon="pi pi-user" (click)="showDialog()" label="Jestem osobą zaginioną"
                 class="p-button-raised p-mb-2 p-button-success"></button>
         </div>
-        <p-dialog header="Ważne!" [(visible)]="display">
+        <p-dialog header="Ważne!" [(visible)]="displayIfClientIsLostPerson">
             Jeśli jesteś osobą zaginioną opisaną na stronie, na której się znajdujesz zostaw swoje dane w polach poniżej lub skontaktuj się z nami.
             Po weryfikacji Twoje dane zostana usunięte z bazy.
             <div class="margin-top-input">
@@ -77,8 +70,11 @@
                 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
                 <p-button (click)="confirm()" icon="pi pi-check" label="Confirm" styleClass="p-mr-2"></p-button>
             </div>
-
         </p-dialog>
     </div>
 </div>
 <p-toast></p-toast>
+<p-dialog header="Dodaj zdjęcie" [(visible)]="displayToAddPhoto">
+    <app-add-image></app-add-image>
+
+</p-dialog>
