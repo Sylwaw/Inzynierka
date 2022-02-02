@@ -2,7 +2,7 @@
     <div class="p-col">
         <button pButton pRipple type="button" label="Powrót" class="p-button-raised p-mb-2" icon="pi pi-arrow-left" (click)="back()"
                 ></button>
-        <h2>Imię Nazwisko</h2>
+        <h2>{{person.name}} {{person.secondName}} {{person.surname}}</h2>
         <div class="smaller">
             <p-galleria [(value)]="images" [responsiveOptions]="responsiveOptions"
                 [containerStyle]="{ 'max-width': '640px' }" [numVisible]="5" [circular]="true"
@@ -23,30 +23,48 @@
     </div>
     <div class="p-col">
         <div class="vertical-center">
-            <div class="p-d-flex">
-                <p>Aktualny wiek:</p>
+          <div class="p-d-flex" *ngIf="person.dangerOfLife != false">
+            <p>ZAGROŻENIE ŻYCIA: {{person.description}}</p>
+          </div>
+            <div class="p-d-flex" *ngIf="person.yearOfBirth">
+                <p>Aktualny wiek: {{actualAge(person.yearOfBirth)}}</p>
             </div>
-            <div class="p-d-flex">
-                <p>Ostatnie miejsce pobytu:</p>
-                <button pButton pRipple type="button" icon="pi pi-pencil"
+            <div class="p-d-flex" *ngIf="person.city">
+                <p>Ostatnie miejsce pobytu: {{person.city}}</p>
+                <button pButton pRipple type="button" icon="c"
                     class="p-button-rounded p-button-secondary p-button-text"></button>
             </div>
-            <div class="p-d-flex">
-                <p>Data zaginięcia:</p>
+            <div class="p-d-flex" *ngIf="person.yearOfBirth">
+              <p>Rok urodzenia: {{person.yearOfBirth}}</p>
+          </div>
+            <div class="p-d-flex" *ngIf="person.dateOfDisappear">
+                <p>Data zaginięcia: {{person.dateOfDisappear | date:"MM/dd/yyyy"}}</p>
             </div>
-            <div class="p-d-flex">
-                <p>Kolor oczu:</p>
+            <div class="p-d-flex" *ngIf="person.eyes">
+                <p>Kolor oczu: {{person.eyes}}</p>
             </div>
-            <div class="p-d-flex">
-                <p>Wzrost:</p>
+            <div class="p-d-flex" *ngIf="person.heightFrom && person.heightTo">
+              <p>Wzrost: {{person.heightFrom}}-{{person.heightTo}}</p>
             </div>
-            <div class="p-d-flex">
-                <p>Opis wyglądu zewnętrznego:</p>
-                <button pButton pRipple type="button" icon="pi pi-pencil"
-                    class="p-button-rounded p-button-secondary p-button-text"></button>
+            <div class="p-d-flex" *ngIf="person.weightFrom && person.weightTo">
+              <p>Waga: {{person.weightFrom}}-{{person.weightTo}}</p>
+            </div>
+            <div class="p-d-flex" *ngIf="person.clothesDescription">
+              <p>Ubiór w dniu zaginięcia: {{person.clothesDescription}}</p>
+            </div>
+            <div class="p-d-flex" *ngIf="person.tatoosDescription">
+              <p>Tatuaże: {{person.tatoosDescription}}</p>
+            </div>
+            <div class="p-d-flex" *ngIf="person.scarsDescription">
+              <p>Blizny: {{person.scarsDescription}}</p>
+            </div>
+            <div class="p-d-flex" *ngIf="person.otherDetails">
+              <p>Inne istotne cechy: {{person.otherDetails}}</p>
             </div>
         </div>
     </div>
+
+
 
     <div class="p-col">
         <div class="p-d-flex p-flex-column vertical-center smaller">
@@ -71,6 +89,35 @@
                 <p-button (click)="confirm()" icon="pi pi-check" label="Confirm" styleClass="p-mr-2"></p-button>
             </div>
         </p-dialog>
+        <div class="p-d-flex p-flex-column vertical-center smaller">
+            <button pButton pRipple type="button" icon="pi pi-pencil" (click)="showDialogToUpdate()" label="Chcę zaktualizować dane o zaginionym"
+                class="p-button-raised p-mb-2 p-button-success"></button>
+        </div>
+        <p-dialog header="Ważne!" [(visible)]="displayIfClientUpdate">
+          Poniżej uzupełnij informacje, które chcesz zaktualizować.
+        <div class="margin-top-input">
+          <span class="p-float-label p-mb-2">
+              <input id="float-input" type="text" pInputText>
+              <label for="float-input">Ostatnie miejsce pobytu</label>
+          </span>
+          <span class="p-float-label p-mt-4">
+              <input id="float-input" type="text" pInputText>
+              <label for="float-input">Zaginiony jest w niebezpieczeństwie</label>
+          </span>
+          <span class="p-float-label p-mt-4">
+            <input id="float-input" type="text" pInputText>
+            <label for="float-input">Opis niebezpieczeństwa</label>
+        </span>
+        <span class="p-float-label p-mt-4">
+          <input id="float-input" type="text" pInputText>
+          <label for="float-input">Inne ważne informacje</label>
+      </span>
+      </div>
+      <div class="p-grid p-nogutter p-justify-end">
+          <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+          <p-button (click)="confirm()" icon="pi pi-check" label="Confirm" styleClass="p-mr-2"></p-button>
+      </div>
+  </p-dialog>
     </div>
 </div>
 <p-toast></p-toast>

@@ -34,8 +34,8 @@ export class PersonCardComponent implements OnInit {
   }
 
   actualAge(yearOfBirth: number): number {
-      var actualYear = new Date().getFullYear();
-      var actualAge = actualYear - yearOfBirth;
+      let actualYear = new Date().getFullYear();
+      let actualAge = actualYear - yearOfBirth;
       return actualAge;
   }
 

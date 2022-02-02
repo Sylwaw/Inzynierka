@@ -9,6 +9,7 @@
     </div>
     <div class="product-grid-item-content">
         <div class="product-name">{{person.name}} {{person.surname}}</div>
+        <div class="allert" *ngIf = "person.isAtRisk">{{person.description}}</div>
         <div class="product-description">{{actualAge(person.yearOfBirth)}} lat</div>
         <div class="images"><img [src]="'assets/' + person.picture" /></div>
     </div>

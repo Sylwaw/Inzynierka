@@ -4,11 +4,19 @@ export interface IPersonDetails {
     name?: string;
     secondName?: string;
     surname?: string;
-    yearOfBirth?: number;
-    dateOfDissapear?: Date;
-    dictEyeId?: number;
-    lastLocationId?: number;
-    isWaiting?: boolean;
-    image?: string;
     city?: string;
+    heightFrom?: number;
+    heightTo?: number;
+    weightFrom?: number;
+    weightTo?: number;
+    otherDetails?: string;
+    clothesDescription?: string;
+    tatoosDescription?: string;
+    scarsDescription?: string;
+    dateOfDisappear?: Date;
+    dangerOfLife?: boolean;
+    description?: string;
+    yearOfBirth?: number;
+    eyes?: string;
+    pictures?: string[];
 }

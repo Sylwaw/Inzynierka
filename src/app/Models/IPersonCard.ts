@@ -6,5 +6,8 @@ export interface IPersonCard {
     city?: string;
     picture?: string;
     yearOfBirth?: number;
-
+    isAtRisk: boolean;
+    description?: string;
+    decimalLatitude: number;
+    decimalLongitude: number;
   }

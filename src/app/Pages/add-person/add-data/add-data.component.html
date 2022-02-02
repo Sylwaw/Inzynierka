@@ -33,10 +33,9 @@
                     <small class="p-error" *ngIf="(city.invalid && submitted )|| (city.dirty && city.invalid)">Ostatnie miejsce pobytu jest wymagane.</small>
                 </div>
                 <div class="p-field lost-date" >
-                    <label for="float-input">Data zaginięcia</label>
-                    <p-calendar #dateOfDissapear="ngModel" id="dateOfDissapear" type="date" [(ngModel)]="personDetails.dateOfDissapear" [ngClass]="{'p-invalid': (dateOfDissapear.invalid && submitted) || (dateOfDissapear.dirty && dateOfDissapear.invalid)}"></p-calendar>
-                    <small class="p-error" *ngIf="(dateOfDissapear.invalid && submitted ) || (dateOfDissapear.dirty && dateOfDissapear.invalid)">Data zaginięcia jest wymagana.</small>
-                    <small class="p-error" *ngIf="personDetails.dateOfDissapear > today">Data zaginięcia nie może być późniejsza niż data dzisiejsza.</small>
+                    <label for="dateOfDisappear">Data zaginięcia</label>
+                    <p-calendar #dateOfDisappear="ngModel" id="dateOfDisappear" type="date" [(ngModel)]="personDetails.dateOfDisappear" [maxDate]="maxDateValue" [ngClass]="{'p-invalid': (dateOfDisappear.invalid && submitted) || (dateOfDisappear.dirty && dateOfDisappear.invalid)}"></p-calendar>
+                    <small class="p-error" *ngIf="(dateOfDisappear.invalid && submitted ) || (dateOfDisappear.dirty && dateOfDisappear.invalid)">Data zaginięcia jest wymagana.</small>
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
 <p-card>
 <ng-template pTemplate="header"> Zdjęcie zaginionego </ng-template>
 <ng-template pTemplate="subheader">
-  Wczytaj zdjęcia osoby zaginionej
+  Wczytaj zdjęcia osoby zaginionej (maksymalnie 2MB)
 </ng-template>
   <!-- <div class="card"> -->
     <p-fileUpload
@@ -10,7 +10,7 @@
       (onUpload)="onUpload($event)"
       multiple="multiple"
       accept="image/*"
-      maxFileSize="1000000"
+      maxFileSize="2000000"
     >
       <ng-template pTemplate="content">
         <ul *ngIf="uploadedFiles.length">

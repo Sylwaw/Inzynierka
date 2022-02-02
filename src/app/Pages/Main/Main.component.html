@@ -14,15 +14,50 @@
 <span class="p-float-label">
   <input id="float-input" type="text" pInputText [(ngModel)]="distance">
   <label for="float-input">Odległość w km</label>
+  <button (click) = "showPeopleInArea" >Ok</button>
 </span>
 
-<p>Twoje położenie: Latitude: {{latitude}}, Longitude: {{longitude}}</p>
+<p>Twoje położenie: Latitude: {{myLatitude}}, Longitude: {{myLongitude}}</p>
+<p>Odległość między Twoim położeniem a Warszawą: {{DistanceBetweenPlaces(myLongitude, myLatitude, warsawLongitude, warsawLatitude)}}</p>
+
+<div class="row">
+  <ng-container *ngIf = "displayPeopleInArea">
+    <p>Osoby najbliżej Ciebie</p>
+    <div class="col-4" *ngFor="let person of peopleInArea">
+      <app-person-card [person]="person"></app-person-card>
+  </div>
+  </ng-container>
+</div>
+<!-- <p-dataView
+#dv
+[value]="personList"
+[paginator]="true"
+paginatorPosition="both"
+[rows]="12"
+layout="grid">
+  <ng-template let-person pTemplate="gridItem">
+      <div>
+        <app-person-card [person]="person"></app-person-card>
+      </div>
+  </ng-template>
+</p-dataView> -->
 
 <!-- <p-paginator [rows]="10" [totalRecords]="120" [rowsPerPageOptions]="[10,20,30]"></p-paginator> -->
 <div class="row">
-    <div class="col-4" *ngFor="let person of persons">
-<app-person-card [person]="person"></app-person-card>
+    <div class="col-4" *ngFor="let person of peopleWithDanger">
+        <app-person-card [person]="person"></app-person-card>
     </div>
 </div>
+
+
+
+<!-- <div class="row">
+  <ng-container class="col-4" *ngFor="let person of personList">
+    <div *ngIf="person.isAtRisk">
+      <app-person-card [person]="person"></app-person-card>
+    </div>
+  </ng-container>
+</div> -->
+
 
 

@@ -23,7 +23,10 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
 
   displayIfClientIsLostPerson = false;
   displayToAddPhoto = false;
+  displayIfClientUpdate = false;
   paramRouteSub: Subscription;
+  personId: number;
+  photoNames: string[] = [];
 
   images: Photos[] = [
     {
@@ -70,8 +73,8 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.paramRouteSub = this.activatedRoute.params.subscribe((params) => {
-      const personId = +params.id;
-      this.getPeopleById(personId);
+      this.personId = params.id;
+      this.getPeopleById(this.personId);
     });
   }
 
@@ -85,6 +88,7 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
         detail: 'Nie udane pobranie z bazy',
       });
     });
+
   }
 
   showDialog() {
@@ -95,8 +99,18 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
     this.displayToAddPhoto = true;
   }
 
+  showDialogToUpdate() {
+    this.displayIfClientUpdate = true;
+  }
+
   back() {
     this.location.back();
+  }
+
+  actualAge(yearOfBirth: number): number {
+    let actualYear = new Date().getFullYear();
+    let actualAge = actualYear - yearOfBirth;
+    return actualAge;
   }
 
   confirm() {

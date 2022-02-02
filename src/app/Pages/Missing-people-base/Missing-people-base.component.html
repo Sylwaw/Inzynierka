@@ -6,18 +6,20 @@
     paginatorPosition="both"
     [rows]="12"
     layout="grid"
+    filterBy="surname"
     filterBy="name"
+    filterBy="city"
     [sortField]="sortField"
     [sortOrder]="sortOrder"
   >
     <ng-template pTemplate="header">
       <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
         <p-dropdown
-          placeholder="Sortowanie"
-          styleClass="p-mb-2 p-mb-md-0"
           [options]="sortOptions"
           [(ngModel)]="sortKey"
           (onChange)="onSortChange($event)"
+          placeholder="Sortowanie"
+          styleClass="p-mb-2 p-mb-md-0"
         ></p-dropdown>
         <div>
           <span class="p-input-icon-left p-mb-2 p-mb-md-0">

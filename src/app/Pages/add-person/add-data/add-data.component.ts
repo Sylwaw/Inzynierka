@@ -22,8 +22,12 @@ export class AddDataComponent implements OnInit {
 
   submitted = false;
   today = new Date;
+  maxDateValue = this.today;
 
-  ngOnInit() {}
+
+  ngOnInit(
+
+  ) {}
 
   nextPage() {
     // tslint:disable-next-line: max-line-length
@@ -32,13 +36,15 @@ export class AddDataComponent implements OnInit {
       this.personDetails.surname &&
       this.personDetails.yearOfBirth &&
       this.personDetails.city &&
-      this.personDetails.dateOfDissapear
+      this.personDetails.dateOfDisappear
     ) {
       this.router.navigateByUrl('/add/photo');
       return;
     }
     this.submitted = true;
   }
+
+
 
 
 

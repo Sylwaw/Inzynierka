@@ -6,6 +6,7 @@ import { PersonCardModule } from '../Components/person-card/person-card.module';
 import {InputTextModule} from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import {PaginatorModule} from 'primeng/paginator';
+import {DataViewModule} from 'primeng/dataview';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {PaginatorModule} from 'primeng/paginator';
     CarouselModule,
     InputTextModule,
     FormsModule,
-    PaginatorModule
+    PaginatorModule,
+    DataViewModule
   ]
 })
 export class MainModule { }
