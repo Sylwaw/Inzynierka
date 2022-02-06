@@ -8,6 +8,17 @@ import { MessageService } from 'primeng/api';
 import { AddDataModule } from './add-data/add-data.module';
 import { AddPhotoModule } from './add-photo/add-photo.module';
 import { AddDetailsModule } from './add-details/add-details.module';
+import { CardModule } from 'primeng/card';
+import { CalendarModule } from 'primeng/calendar';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { AddImageModule } from '../Components/add-image/add-image.module';
+import {DropdownModule} from 'primeng/dropdown';
+import {CheckboxModule} from 'primeng/checkbox';
+import { DialogModule } from 'primeng/dialog';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import { RouterModule } from '@angular/router';
+
 
 
 @NgModule({
@@ -19,7 +30,17 @@ import { AddDetailsModule } from './add-details/add-details.module';
     ToastModule,
     AddDataModule,
     AddPhotoModule,
-    AddDetailsModule
+    AddDetailsModule,
+    CardModule,
+    CalendarModule,
+    InputTextModule,
+    ButtonModule,
+    AddImageModule,
+    DropdownModule,
+    CheckboxModule,
+    DialogModule,
+    InputTextareaModule,
+    RouterModule
   ],
   exports: [AddPersonComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

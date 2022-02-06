@@ -2,11 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { MultiSelect } from 'primeng/multiselect';
+import { ChoiceList } from '../add-data/add-data.component';
 
-export interface ChoiceList {
-  viewValue: any;
-  value: number;
-}
+
 
 export interface SelectedFeaturesDescriptions {
   value: number;

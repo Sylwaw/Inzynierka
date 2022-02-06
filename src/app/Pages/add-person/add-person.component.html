@@ -1,9 +1,179 @@
 <!--Adding new person menu-->
-<br>
+<!-- <br>
 <div class="card">
     <p-toast></p-toast>
     <p-steps [model]="items" [readonly]="true"></p-steps>
 </div>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
+<div class="container">
+  <div class="add-data flex-item ">
+    <span class="p-float-label field">
+      <input [(ngModel)] = "personToCreate.name" id="float-input" type="text" pInputText />
+      <label for="float-input">Imię</label>
+      <p>{{personToCreate.name}}</p>
+    </span>
+    <span class="p-float-label field">
+      <input [(ngModel)] = "personToCreate.secondName" id="float-input" type="text" pInputText />
+      <label for="float-input">Drugie imię (Opcjonalnie)</label>
+    </span>
+    <span class="p-float-label field">
+      <input [(ngModel)] = "personToCreate.surname" id="float-input" type="text" pInputText />
+      <label for="float-input">Nazwisko</label>
+    </span>
+    <span class="p-float-label field">
+      <input [(ngModel)] = "personToCreate.yearOfBirth" id="float-input" type="text" pInputText />
+      <label for="float-input">Rok urodzenia</label>
+    </span>
+    <span class="p-float-label field">
+      <input [(ngModel)] = "cityName" id="float-input" type="text" pInputText />
+      <label for="float-input">Ostatnie miejsce pobytu</label>
+    </span>
+    <span class="p-float-label field">
+      <p-calendar
+        [(ngModel)] = "personToCreate.dateOfDisappear"
+        id="date-input"
+        [maxDate]="maxDateValue"
+      ></p-calendar>
+      <label for="date-input">Data zaginięcia</label>
+    </span>
+  </div>
+  <div class="add-details flex-item">
+    <span class="p-dropdown field">
+      <p-dropdown
+        placeholder="Kolor oczu"
+        [options]="eyes"
+        [(ngModel)]="selectedValueEyes"
+        optionLabel="viewValue"
+      ></p-dropdown>
+    </span>
+    <span class="p-dropdown field">
+      <p-dropdown
+        [options]="heightMin"
+        [(ngModel)]="selectedValueHeightMin"
+        optionLabel="viewValue"
+        placeholder="Wzrost od"
+        [filter]="true"
+        [style]="{ width: '10vw' }"
+      ></p-dropdown>
+      <p-dropdown
+        [options]="heightMax"
+        [(ngModel)]="selectedValueHeightMax"
+        optionLabel="viewValue"
+        placeholder="Wzrost do"
+        [filter]="true"
+        [style]="{ width: '10vw' }"
+      ></p-dropdown>
+    </span>
+    <span class="p-dropdown field">
+      <p-dropdown
+        [options]="weightMin"
+        [(ngModel)]="selectedValueWeightMin"
+        optionLabel="viewValue"
+        placeholder="Waga od"
+        [filter]="true"
+        [style]="{ width: '10vw' }"
+      ></p-dropdown>
+      <p-dropdown
+        [options]="weightMax"
+        [(ngModel)]="selectedValueWeightMax"
+        optionLabel="viewValue"
+        placeholder="Waga do"
+        [filter]="true"
+        [style]="{ width: '10vw' }"
+      ></p-dropdown>
+    </span>
+    <div>
+      <div class="p-checkbox field">
+        <p-checkbox inputId="danger" [binary]="true" (click)="switchValue(isAtRisk)" [(ngModel)]="isAtRisk" ></p-checkbox>
+        <label for="danger">Zagrożenie życia</label>
+        <p-dialog [(visible)]="display" [style]="{width: '50vw'}" [closable]="false">WAŻNE!<br> Zaznacz i opisz tylko w przypadku osoby:
+        <br> -małoletniej w wieku do 10 lat
+        <br> -małoletniej w wieku od 11 do 13 lat, zaginionej po raz pierwszy
+        <br> -niezdolnej do samodzielnej egzystencji
+        <br> -wymagającej stałego przyjmowania leków, których brak przyjęcia w odpowiednim czasie stanowi
+        zagrożenie jej życia
+        <br> -zaginionej w związku z realnym podejrzeniem popełnienia na jej szkodę przestępstwa przeciwko życiu
+        lub wolności
+        <br> -której zachowanie w realny sposób wskazywało na bezpośredni zamiar popełnienia samobójstwa,
+        a natychmiastowe podjęcie czynności poszukiwawczych oraz zaangażowanie znacznych sił i środków
+        z dużym prawdopodobieństwem przyczyni się do zapobieżenia zamachu samobójczego
+        <br> -zaginionej w warunkach atmosferycznych zagrażających jej życiu w przypadku niezwłocznego
+        nieodnalezienia
+        </p-dialog>
+        <i class="pi pi-info-circle" (mouseover)="showDialog()" (mouseleave)="hideDialog()"></i>
+    </div>
+    </div>
 
+
+    <div class="p-float-label field text-input" *ngIf="isAtRisk">
+        <textarea id="float-input" pInputTextarea [(ngModel)]="personToCreate.description" placeholder="Opisz powody zagrożenia"
+            ></textarea>
+    </div>
+
+    <div class="field">
+      <p>Znaki szczególne - wybierz, co chcesz opisać</p>
+      <div>
+        <div class="p-checkbox">
+          <p-checkbox inputId="tatoos" [(ngModel)]="boolTatoosDescription" [binary]="true" (click)="switchValue(boolTatoosDescription)"></p-checkbox>
+          <label for="tatoos">Tatuaże</label>
+        </div>
+      </div>
+      <div class="text-input" *ngIf = "boolTatoosDescription" >
+        <textarea [(ngModel)] = "personToCreate.tatoosDescription" id="float-input" pInputTextarea placeholder="Opisz tatuaże zaginionego"></textarea>
+      </div>
+      <div>
+        <div class="p-checkbox">
+          <p-checkbox inputId="scars" [(ngModel)]="boolScarsDescription" [binary]="true" (click)="switchValue(boolScarsDescription)"></p-checkbox>
+          <label for="scars">Blizny</label>
+        </div>
+      </div>
+      <div class="text-input" *ngIf = "boolScarsDescription">
+        <textarea [(ngModel)] = "personToCreate.scarsDescription" id="float-input" pInputTextarea placeholder="Opisz blizny zaginionego"></textarea>
+      </div>
+      <div>
+        <div class="p-checkbox">
+          <p-checkbox inputId="other" [(ngModel)]="boolOtherDescription" [binary]="true" (click)="switchValue(boolOtherDescription)"></p-checkbox>
+          <label for="other">Inne</label>
+        </div>
+      </div>
+      <div class="text-input" *ngIf = "boolOtherDescription">
+        <textarea [(ngModel)] = "personToCreate.otherDetails" id="float-input" pInputTextarea placeholder="Opisz inne istotne cechy"></textarea>
+      </div>
+      <div>
+        <div  class="p-checkbox">
+          <p-checkbox inputId="clothes" [(ngModel)]="boolClothesDescription" [binary]="true" (click)="switchValue(boolClothesDescription)"></p-checkbox>
+          <label for="clothes">Ubiór</label>
+        </div>
+      </div>
+      <div class="text-input" *ngIf = "boolClothesDescription">
+        <textarea [(ngModel)] = "personToCreate.clothesDescription" id="float-input" pInputTextarea placeholder="Opisz ubiór w dniu zaginięcia"></textarea>
+      </div>
+    </div>
+
+  </div>
+  <div class="add-photo flex-item">
+    <app-add-image></app-add-image>
+  </div>
+</div>
+<div class="button-submit">
+  <button pButton pRipple type="button" icon="pi pi-check" label="Zgłoś" class="p-button-raised p-button-success" (click) = "submit()"></button>
+  <p-dialog header="Ważne!" [(visible)]="boolSubmit">
+    W celu weryfikacji Twojego zgłoszenia prosimy o pozostawienie danych kontaktowych.
+    <div class="margin-top-input">
+        <span class="p-float-label p-mb-2">
+            <input id="float-input" type="text" pInputText>
+            <label for="float-input">Numer telefonu</label>
+        </span>
+        <span class="p-float-label p-mt-4">
+            <input id="float-input" type="text" pInputText>
+            <label for="float-input">Email</label>
+        </span>
+    </div>
+    <div class="p-grid p-nogutter p-justify-end">
+        <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+        <p-button (click)="confirm()" icon="pi pi-check" label="Potwierdzam" styleClass="p-mr-2"></p-button>
+    </div>
+</p-dialog>
+</div>
+<router-outlet></router-outlet>
 

@@ -24,3 +24,37 @@
 .ui-steps.steps-custom .ui-steps-item .ui-steps-title {
     color: #555555;
 }
+
+.field {
+  margin-top: 2em;
+}
+
+.flex-item {
+  margin-left: 10em;
+  width: auto;
+}
+
+.container {
+  display: flex; /* or inline-flex */
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.add-photo {
+  margin-top: 5em;
+}
+
+.text-input {
+  width: 100%;
+}
+
+.button-submit {
+  position: absolute;
+  right: 0px;
+  width: 300px;
+  padding: 10px;
+  margin-top: 5em;
+}
+
+

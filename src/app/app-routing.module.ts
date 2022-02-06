@@ -13,17 +13,18 @@ export const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: MainComponent },
   { path: 'search', component: MissingPeopleBaseComponent },
-  { path: 'detail/:id', component: MissingPeopleDetailsComponent }, // tu se routing nazwij jak chcesz:D
-  {
-    path: 'add',
-    component: AddPersonComponent,
-    children: [
-      { path: '', redirectTo: '/add/data', pathMatch: 'full' },
-      { path: 'data', component: AddDataComponent },
-      { path: 'photo', component: AddPhotoComponent },
-      { path: 'details', component: AddDetailsComponent },
-    ],
-  },
+  { path: 'detail/:id', component: MissingPeopleDetailsComponent },
+  { path: 'add', component: AddPersonComponent },
+  // {
+  //   path: 'add',
+  //   component: AddPersonComponent,
+  //   children: [
+  //     { path: '', redirectTo: '/add/data', pathMatch: 'full' },
+  //     { path: 'data', component: AddPersonComponent },
+  //     // { path: 'photo', component: AddPhotoComponent },
+  //     // { path: 'details', component: AddDetailsComponent },
+  //   ],
+  // },
   { path: '**', component: PageNotFoundComponent },
 ];
 

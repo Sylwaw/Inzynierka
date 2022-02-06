@@ -26,6 +26,7 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
   displayIfClientUpdate = false;
   paramRouteSub: Subscription;
   personId: number;
+  isAtRisk: boolean = false;
   photoNames: string[] = [];
 
   images: Photos[] = [
@@ -113,24 +114,29 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
     return actualAge;
   }
 
+  waitingPerson(){
+    this.person.isWaiting = true;
+  }
+
   confirm() {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to proceed?',
-      header: 'Confirmation',
+      message: 'Jesteś pewien, że powierdzasz informacje?',
+      header: 'Potwierdź',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.messageService.add({
           severity: 'info',
-          summary: 'Confirmed',
-          detail: 'You have accepted',
+          summary: 'Potwierdzono',
+          detail: 'Zaakceptowano',
         });
         this.displayIfClientIsLostPerson = false;
+        this.waitingPerson();
       },
       reject: () => {
         this.messageService.add({
           severity: 'info',
-          summary: 'Rejected',
-          detail: 'You have rejected',
+          summary: 'Nie potwierdzono',
+          detail: 'Nie potwierdziłeś',
         });
         this.displayIfClientIsLostPerson = false;
       },

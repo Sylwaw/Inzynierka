@@ -38,6 +38,7 @@ export class MissingPeopleBaseComponent implements OnInit {
     this.sortOptions = [
       {label: 'Wiek rosnąco', value: '!yearOfBirth'},
       {label: 'Wiek malejąco', value: 'yearOfBirth'},
+      {label: 'Data zaginięcia: od najnowszych', value: '!dateOfDisappear'}
   ];
 
 
@@ -50,14 +51,14 @@ export class MissingPeopleBaseComponent implements OnInit {
   onSortChange(event) {
     let value = event.value;
 
-    if (value.yearOfBirth('!') === 0) {
-        this.sortOrder = -1;
-        this.sortField = value.substring(1, value.length);
-    }
-    else {
-        this.sortOrder = 1;
-        this.sortField = value;
-    }
+    if (value.indexOf('!') === 0 && value!= null) {
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
+  }
+  else{
+      this.sortOrder = 1;
+      this.sortField = value;
+  }
 }
 
   getAllPeople(): void {

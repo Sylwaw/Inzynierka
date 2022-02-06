@@ -1,10 +1,8 @@
-
-export interface IPersonDetails {
-    id?: number;
-    name?: string;
+export interface IPersonCreate {
+    name: string;
     secondName?: string;
-    surname?: string;
-    city?: string;
+    surname: string;
+    dictCityID: number;
     heightFrom?: number;
     heightTo?: number;
     weightFrom?: number;
@@ -13,11 +11,11 @@ export interface IPersonDetails {
     clothesDescription?: string;
     tatoosDescription?: string;
     scarsDescription?: string;
-    dateOfDisappear?: Date;
-    dangerOfLife?: boolean;
+    dateOfDisappear: Date;
+    isAtRisk: boolean;
     description?: string;
     yearOfBirth?: number;
-    eyes?: string;
-    pictures?: string[];
-    isWaiting?: boolean;
+    dictEyeID: number;
+    // pictures?: string[];
+    isWaiting: boolean;
 }

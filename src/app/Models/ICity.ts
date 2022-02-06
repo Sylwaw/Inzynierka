@@ -3,4 +3,5 @@ export interface ICity {
     name: string;
     decimalLongitude: number;
     decimalLatitude: number;
+    // provinceName: string;
   }

@@ -10,6 +10,8 @@ import { ConfirmationService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { AddImageModule } from '../../Components/add-image/add-image.module';
 import { CardModule } from 'primeng/card';
+import { CheckboxModule } from 'primeng/checkbox';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { CardModule } from 'primeng/card';
     InputTextModule,
     ConfirmDialogModule,
     AddImageModule,
-    CardModule
+    CardModule,
+    CheckboxModule,
+    FormsModule
   ],
   providers: [ConfirmationService]
 })

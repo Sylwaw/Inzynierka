@@ -39,6 +39,10 @@ export class PersonCardComponent implements OnInit {
       return actualAge;
   }
 
+  notWaiting(){
+    this.person.isWaiting = false;
+  }
+
 
 
 }

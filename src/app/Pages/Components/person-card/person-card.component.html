@@ -1,20 +1,25 @@
 <!--One card from the base (before details)-->
 
+<!-- <div [ngClass]="person.isWaiting == false ? 'product-grid-item card' : 'product-grid-item-waiting card'"> -->
 <div class="product-grid-item card">
-    <div class="product-grid-item-top">
-        <div>
-            <i class="pi pi-map-marker product-category-icon"></i>
-            <span class="product-category">{{person.city}}</span>
-        </div>
-    </div>
-    <div class="product-grid-item-content">
-        <div class="product-name">{{person.name}} {{person.surname}}</div>
-        <div class="allert" *ngIf = "person.isAtRisk">{{person.description}}</div>
-        <div class="product-description">{{actualAge(person.yearOfBirth)}} lat</div>
-        <div class="images"><img [src]="'assets/' + person.picture" /></div>
-    </div>
-    <div class="product-grid-item-bottom">
-        <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success"
-            [routerLink]="['/detail', person.id]"></button> <!--Exact person details window-->
+  <div class="product-grid-item-top">
+    <div>
+        <i class="pi pi-map-marker product-category-icon"></i>
+        <span class="product-category">{{person.city}}</span>
     </div>
 </div>
+<div class="product-grid-item-content">
+    <div class="product-name">{{person.name}} {{person.surname}}</div>
+    <div class="allert" *ngIf = "person.isAtRisk">{{person.description}}</div>
+    <div class="product-description">{{actualAge(person.yearOfBirth)}} lat</div>
+    <div [ngClass]="person.isWaiting == false ? '' : 'images-waiting'"><img [src]="'assets/' + person.picture" /></div>
+</div>
+<div class="product-grid-item-bottom">
+    <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" [disabled]="person.isWaiting == true"
+        [routerLink]="['/detail', person.id]"></button> <!--Exact person details window-->
+    <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded" *ngIf = "person.isWaiting == true" (click) = "notWaiting()"
+        ></button>
+</div>
+</div>
+
+

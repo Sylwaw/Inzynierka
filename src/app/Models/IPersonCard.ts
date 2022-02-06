@@ -10,4 +10,6 @@ export interface IPersonCard {
     description?: string;
     decimalLatitude: number;
     decimalLongitude: number;
+    dateOfDisappear?: Date;
+    isWaiting: boolean;
   }

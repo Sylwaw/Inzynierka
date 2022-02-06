@@ -4,7 +4,7 @@ import { PersonHttpService } from '../../Services/person/person-http.service';
 import { MessageService } from 'primeng/api';
 import { IPersonDetails } from 'src/app/Models/IPersonDetails';
 import { filter } from 'rxjs/operators';
-//import { ICity } from '../../src/app/Models/ICity';
+import { ICity } from 'src/app/Models/ICity';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -21,10 +21,10 @@ public personList: IPersonCard[];
 // persons: IPersonCard[] = [];
 public peopleWithDanger: IPersonCard[] = [];
 public peopleInArea: IPersonCard[] = [];
+public city: ICity;
 
-
-localization: string;
-distance: number =  null;
+cityName: string;
+distance: number = 5;
 myLongitude: number;
 myLatitude: number;
 warsawLatitude = 52.23194444;
@@ -85,7 +85,8 @@ readonly RADIUS = 6378.16;
     (src) => {
       this.personList = src;
       this.peopleWithDanger = src.filter(value => value.isAtRisk);
-      this.peopleInArea = src.filter(value => this.DistanceBetweenPlaces(value.decimalLongitude, value.decimalLatitude, this.myLongitude, this.myLatitude) <= this.distance);
+      this.peopleInArea = src.filter(value => (this.DistanceBetweenPlaces(value.decimalLongitude, value.decimalLatitude,
+      this.myLongitude, this.myLatitude) <= this.distance));
     },
       (error) => {
         this.messageService.add({
@@ -103,6 +104,38 @@ readonly RADIUS = 6378.16;
 
   console(): void{
     console.log(this.personList[50].name);
+  }
+
+  updateDistance(value: number){
+    this.distance=value;
+    this.updatePeopleInArea();
+  }
+
+  updateCity(value: string){
+    this.getCityByName(value);
+    this.myLatitude = this.city.decimalLatitude;
+    this.myLongitude = this.city.decimalLongitude;
+    this.updatePeopleInArea();
+  }
+
+  updatePeopleInArea(){
+    this.peopleInArea = this.personList.filter(value => (this.DistanceBetweenPlaces(value.decimalLongitude, value.decimalLatitude,
+    this.myLongitude, this.myLatitude) <= this.distance));
+  }
+
+  public getCityByName(value: string): void {
+    this.personHttpService.getCityByName(value).subscribe(
+    (src) => {
+      this.city = src;
+    },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Rejected',
+          detail: 'Nie udane pobranie z bazy',
+        });
+      }
+    );
   }
 
 
