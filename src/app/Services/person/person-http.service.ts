@@ -4,7 +4,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPersonCard } from '../../Models/IPersonCard';
 import { IPersonDetails } from '../../Models/IPersonDetails';
-// import { ICity } from '../../Models/ICity';
+import { ICity } from '../../Models/ICity';
+import { IPersonCreate } from 'src/app/Models/IPersonCreate';
+import { IPersonUpdate } from 'src/app/Models/IPersonUpdate';
+
 
 // serwis widoczny w całej aplikacji
 @Injectable({
@@ -25,8 +28,16 @@ export class PersonHttpService {
     return this.http.get<IPersonCard[]>(this.linkHttp + 'getAllPeople');
   }
 
-  // getCityByName(value: string): Observable<ICity>{
-  //   return this.http.get<ICity>(this.linkHttp + 'cityByName/' + value);
+  getCityByName(value: string): Observable<ICity>{
+    return this.http.get<ICity>(this.linkHttp2 + 'cityByName/' + value);
+  }
+
+  postPerson(person:IPersonCreate): Observable<IPersonCreate> {
+    return this.http.post<IPersonCreate>(this.linkHttp + 'createPerson', person);
+  }
+
+  // putPeopleById(id: number, person: IPersonUpdate): Observable<IPersonUpdate> {
+  //   return this.http.put<IPersonUpdate>(this.linkHttp + 'updatePerson', id, person);
   // }
 
 
