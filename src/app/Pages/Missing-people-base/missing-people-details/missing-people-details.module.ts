@@ -14,6 +14,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [MissingPeopleDetailsComponent],
   imports: [

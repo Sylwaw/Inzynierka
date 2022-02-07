@@ -2,7 +2,7 @@ export interface IPersonCreate {
     name: string;
     secondName?: string;
     surname: string;
-    dictCityID: number;
+    dictCity: string;
     heightFrom?: number;
     heightTo?: number;
     weightFrom?: number;

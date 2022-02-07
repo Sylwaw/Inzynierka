@@ -26,7 +26,7 @@ export class AddPersonComponent implements OnInit {
     name: '',
     secondName: '',
     surname: '',
-    dictCityID: null,
+    dictCity: null,
     heightFrom: null,
     heightTo: null,
     weightFrom: null,
@@ -46,10 +46,6 @@ export class AddPersonComponent implements OnInit {
   boolSubmit = false;
   today = new Date;
   maxDateValue = this.today;
-  name: string;
-  secondName: string;
-  surname: string;
-  yearOfBirth: number;
   cityName: string;
   cityID: number;
   dateOfDisappear: Date;
@@ -68,12 +64,7 @@ export class AddPersonComponent implements OnInit {
   selectedValueHeightMax: ChoiceList;
   selectedValueWeightMin: ChoiceList;
   selectedValueWeightMax: ChoiceList;
-  heightFrom: number;
-  heightTo: number;
-  weightFrom: number;
-  weightTo: number;
   isAtRisk = false;
-  riskDescription: string;
   display = false;
   display1 = false;
   boolTatoosDescription: boolean = false;
@@ -154,44 +145,31 @@ export class AddPersonComponent implements OnInit {
   }
 
   createNewPerson(){
-    // this.personToCreate.name = this.name;
-    // this.personToCreate.secondName = this.secondName;
-    // this.personToCreate.surname = this.surname;
-    // this.personToCreate.yearOfBirth = this.yearOfBirth;
-    // this.personToCreate.dateOfDisappear = this.dateOfDisappear;
-    // this.personToCreate.dictEyeID = this.selectedValueEyes.value;
-    // this.personToCreate.heightFrom = this.selectedValueHeightMin.value;
-    // this.personToCreate.heightTo = this.selectedValueHeightMax.value;
-    // this.personToCreate.weightFrom = this.selectedValueWeightMin.value;
-    // this.personToCreate.otherDetails = this.otherDetails;
-    // this.personToCreate.tatoosDescription = this.tatoosDescription;
-    // this.personToCreate.scarsDescription = this.scarsDescription;
-    // this.personToCreate.clothesDescription = this.clothesDescription;
-    // this.personToCreate.isAtRisk = this.isAtRisk;
-    // this.personToCreate.description = this.riskDescription;
-    // this.personToCreate.isWaiting = true;
-    // this.personToCreate.dictCityID = this.getCityID();
     console.log("Name " + this.personToCreate.name);
     console.log("secondName " + this.personToCreate.secondName);
     console.log("surname " + this.personToCreate.surname);
     console.log("yearOfBirth " + this.personToCreate.yearOfBirth);
-    console.log("dateOfDisappear " + this.personToCreate.dateOfDisappear);
+
     console.log("tatoosDescription " + this.personToCreate.tatoosDescription);
     console.log("scarsDescription " + this.personToCreate.scarsDescription);
     console.log("otherDetails " + this.personToCreate.otherDetails);
     console.log("clothesDescription " + this.personToCreate.clothesDescription);
-    console.log("isAtRisk " + this.isAtRisk);
+    this.personToCreate.isAtRisk = this.isAtRisk;
+    console.log("isAtRisk " + this.personToCreate.isAtRisk);
+
     console.log("description " + this.personToCreate.description);
     console.log("isWaiting " + this.personToCreate.isWaiting);
     console.log("heightFrom " + this.selectedValueHeightMin.value);
+
     this.personToCreate.heightFrom = this.selectedValueHeightMin.value;
     this.personToCreate.heightTo = this.selectedValueHeightMax.value;
     this.personToCreate.weightFrom = this.selectedValueWeightMin.value;
     this.personToCreate.weightTo = this.selectedValueWeightMax.value;
     this.personToCreate.dictEyeID = this.selectedValueEyes.value;
-    this.personToCreate.dictCityID = 1;
+    this.personToCreate.dictCity = this.cityName;
+    this.personToCreate.dateOfDisappear = this.dateOfDisappear;
 
-
+    console.log("dateOfDisappear " + this.personToCreate.dateOfDisappear);
     console.log("heightTo " + this.selectedValueHeightMax.value);
     console.log("weightFrom " + this.selectedValueWeightMin.value);
     console.log("weightTo " + this.selectedValueWeightMax.value);
@@ -201,6 +179,7 @@ export class AddPersonComponent implements OnInit {
     // this.cityID = this.city.id;
 
     this.postPerson();
+    console.log("isAtRisk " + this.personToCreate.isAtRisk);
     // console.log(this.cityID);
   }
 
@@ -232,6 +211,10 @@ export class AddPersonComponent implements OnInit {
 
   switchValue(boolVal: boolean) {
     boolVal = !boolVal;
+  }
+
+  riskIsTrue() {
+    this.isAtRisk = true;
   }
 
   showDialog() {
@@ -273,6 +256,13 @@ export class AddPersonComponent implements OnInit {
       },
     });
     this.router.navigateByUrl('/main');
+  }
+
+  checkIfNull(value: any): boolean{
+    if(value == '' || null){
+      return true;
+    }
+    return false;
   }
 
 

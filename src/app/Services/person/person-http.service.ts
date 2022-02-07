@@ -36,9 +36,9 @@ export class PersonHttpService {
     return this.http.post<IPersonCreate>(this.linkHttp + 'createPerson', person);
   }
 
-  // putPeopleById(id: number, person: IPersonUpdate): Observable<IPersonUpdate> {
-  //   return this.http.put<IPersonUpdate>(this.linkHttp + 'updatePerson', id, person);
-  // }
+  putPeopleById(id: number, person: IPersonUpdate): Observable<IPersonUpdate> {
+    return this.http.put<IPersonUpdate>(this.linkHttp + 'updatePerson/' + id, person);
+  }
 
 
 }
