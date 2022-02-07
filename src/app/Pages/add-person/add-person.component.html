@@ -8,9 +8,8 @@
 <div class="container">
   <div class="add-data flex-item ">
     <span class="p-float-label field">
-      <input [(ngModel)] = "personToCreate.name" id="float-input" type="text" pInputText />
+      <input [(ngModel)] = "personToCreate.name" id="float-input" type="text" pInputText [ngClass]="checkIfNull(personToCreate.name) ? 'ng-invalid ng-dirty' : ''" />
       <label for="float-input">Imię</label>
-      <p>{{personToCreate.name}}</p>
     </span>
     <span class="p-float-label field">
       <input [(ngModel)] = "personToCreate.secondName" id="float-input" type="text" pInputText />
@@ -25,12 +24,12 @@
       <label for="float-input">Rok urodzenia</label>
     </span>
     <span class="p-float-label field">
-      <input [(ngModel)] = "cityName" id="float-input" type="text" pInputText />
+      <input [(ngModel)]="cityName" id="float-input" type="text" pInputText />
       <label for="float-input">Ostatnie miejsce pobytu</label>
     </span>
     <span class="p-float-label field">
       <p-calendar
-        [(ngModel)] = "personToCreate.dateOfDisappear"
+        [(ngModel)] = "dateOfDisappear"
         id="date-input"
         [maxDate]="maxDateValue"
       ></p-calendar>
@@ -84,7 +83,7 @@
     </span>
     <div>
       <div class="p-checkbox field">
-        <p-checkbox inputId="danger" [binary]="true" (click)="switchValue(isAtRisk)" [(ngModel)]="isAtRisk" ></p-checkbox>
+        <p-checkbox inputId="danger" [binary]="true" (click)="riskIsTrue" [(ngModel)]="isAtRisk" ></p-checkbox>
         <label for="danger">Zagrożenie życia</label>
         <p-dialog [(visible)]="display" [style]="{width: '50vw'}" [closable]="false">WAŻNE!<br> Zaznacz i opisz tylko w przypadku osoby:
         <br> -małoletniej w wieku do 10 lat
