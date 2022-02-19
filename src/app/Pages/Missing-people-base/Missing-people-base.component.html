@@ -6,7 +6,7 @@
     paginatorPosition="both"
     [rows]="12"
     layout="grid"
-    filterBy="surname"
+    filterBy="surname,name,city,yearOfBirth"
     [sortField]="sortField"
     [sortOrder]="sortOrder"
   >
@@ -24,12 +24,12 @@
             <i class="pi pi-search"></i>
             <input type="search" pInputText placeholder="Wyszukaj" (input)="dv.filter($event.target.value)">
           </span>
-          <p-button (click)="showDialog()">Zaawansowane</p-button>
+          <!-- <p-button (click)="showDialog()">Zaawansowane</p-button> -->
         </div>
         <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
       </div>
       <div *ngIf="visible">
-        <app-search-details></app-search-details>
+        <!-- <app-search-details></app-search-details> -->
       </div>
     </ng-template>
     <ng-template let-person pTemplate="listItem">

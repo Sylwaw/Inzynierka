@@ -15,16 +15,6 @@ export const routes: Routes = [
   { path: 'search', component: MissingPeopleBaseComponent },
   { path: 'detail/:id', component: MissingPeopleDetailsComponent },
   { path: 'add', component: AddPersonComponent },
-  // {
-  //   path: 'add',
-  //   component: AddPersonComponent,
-  //   children: [
-  //     { path: '', redirectTo: '/add/data', pathMatch: 'full' },
-  //     { path: 'data', component: AddPersonComponent },
-  //     // { path: 'photo', component: AddPhotoComponent },
-  //     // { path: 'details', component: AddDetailsComponent },
-  //   ],
-  // },
   { path: '**', component: PageNotFoundComponent },
 ];
 

@@ -1,5 +1,5 @@
 <!-- <app-carousel></app-carousel> -->
-<p>OSOBY NAJBARDZIEJ ZAGROŻONE</p>
+<h4>Osoby najbardziej zagrożone</h4>
 <div class="card">
 <p-dataView
     #dv
@@ -10,10 +10,8 @@
     layout="grid"
   >
   <ng-template let-person pTemplate="gridItem">
-    <div class="p-col-16">
-      <div class="product-grid-item">
+    <div class="p-col-18 p-md-2">
         <app-person-card [person]="person"></app-person-card>
-      </div>
     </div>
   </ng-template>
 </p-dataView>
@@ -51,10 +49,8 @@
     layout="grid"
   >
   <ng-template let-person pTemplate="gridItem">
-    <div class="p-col-16">
-      <div class="product-grid-item">
+    <div class="p-col-18 p-md-2">
         <app-person-card [person]="person"></app-person-card>
-      </div>
     </div>
   </ng-template>
 </p-dataView>

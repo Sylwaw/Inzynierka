@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import * as internal from 'events';
 import { ICity } from 'src/app/Models/ICity';
 
+
 @Component({
   selector: 'app-add-person',
   templateUrl: './add-person.component.html',
@@ -40,12 +41,14 @@ export class AddPersonComponent implements OnInit {
     description: '',
     yearOfBirth: null,
     dictEyeID: null,
-    isWaiting: true
+    isWaiting: true,
+    pictures : []
   };
   submitted = false;
   boolSubmit = false;
   today = new Date;
   maxDateValue = this.today;
+  currentYear: number;
   cityName: string;
   cityID: number;
   dateOfDisappear: Date;
@@ -54,11 +57,14 @@ export class AddPersonComponent implements OnInit {
   scarsDescription: string;
   otherDetails: string;
   clothesDescription: string;
+  name: string;
   dictEyeID: number;
   heightMin: ChoiceList[];
   heightMax: ChoiceList[];
   weightMin: ChoiceList[];
   weightMax: ChoiceList[];
+  year: ChoiceList[];
+  selectedValueYear: ChoiceList;
   selectedValueEyes: ChoiceList;
   selectedValueHeightMin: ChoiceList;
   selectedValueHeightMax: ChoiceList;
@@ -113,22 +119,16 @@ export class AddPersonComponent implements OnInit {
     for (let i = 1; i < 200; i++) {
       this.weightMax.push({ viewValue: i + 'kg', value: i });
     }
+
+    this.getCurrentYear();
+
+    this.year = [];
+    for (let i = this.currentYear - 110; i <= this.currentYear; i++) {
+      this.year.push({ viewValue: i, value: i });
+    }
   }
 
-  // nextPage() {
-  //   // tslint:disable-next-line: max-line-length
-  //   if (
-  //     this.personToCreate.name &&
-  //     this.personToCreate.surname &&
-  //     this.personToCreate.yearOfBirth &&
-  //     this.personToCreate.dictCityID &&
-  //     this.personToCreate.dateOfDisappear
-  //   ) {
-  //     this.router.navigateByUrl('/main');
-  //     return;
-  //   }
-  //   this.submitted = true;
-  // }
+
   public getCityByName(value: string): void {
     this.personHttpService.getCityByName(value).subscribe(
     (src) => {
@@ -144,49 +144,29 @@ export class AddPersonComponent implements OnInit {
     );
   }
 
+  nameImage(event) {
+    this.personToCreate.pictures.push(event);
+  }
+
   createNewPerson(){
-    console.log("Name " + this.personToCreate.name);
-    console.log("secondName " + this.personToCreate.secondName);
-    console.log("surname " + this.personToCreate.surname);
-    console.log("yearOfBirth " + this.personToCreate.yearOfBirth);
-
-    console.log("tatoosDescription " + this.personToCreate.tatoosDescription);
-    console.log("scarsDescription " + this.personToCreate.scarsDescription);
-    console.log("otherDetails " + this.personToCreate.otherDetails);
-    console.log("clothesDescription " + this.personToCreate.clothesDescription);
+    //this.personToCreate.name = this.name;
     this.personToCreate.isAtRisk = this.isAtRisk;
-    console.log("isAtRisk " + this.personToCreate.isAtRisk);
-
-    console.log("description " + this.personToCreate.description);
-    console.log("isWaiting " + this.personToCreate.isWaiting);
-    console.log("heightFrom " + this.selectedValueHeightMin.value);
-
     this.personToCreate.heightFrom = this.selectedValueHeightMin.value;
     this.personToCreate.heightTo = this.selectedValueHeightMax.value;
     this.personToCreate.weightFrom = this.selectedValueWeightMin.value;
     this.personToCreate.weightTo = this.selectedValueWeightMax.value;
     this.personToCreate.dictEyeID = this.selectedValueEyes.value;
+    this.personToCreate.yearOfBirth = this.selectedValueYear.value;
     this.personToCreate.dictCity = this.cityName;
     this.personToCreate.dateOfDisappear = this.dateOfDisappear;
-
-    console.log("dateOfDisappear " + this.personToCreate.dateOfDisappear);
-    console.log("heightTo " + this.selectedValueHeightMax.value);
-    console.log("weightFrom " + this.selectedValueWeightMin.value);
-    console.log("weightTo " + this.selectedValueWeightMax.value);
-    console.log("eyes " + this.selectedValueEyes.value);
-
-    // this.getCityByName(this.cityName);
-    // this.cityID = this.city.id;
-
     this.postPerson();
-    console.log("isAtRisk " + this.personToCreate.isAtRisk);
-    // console.log(this.cityID);
   }
 
   postPerson(){
     this.personHttpService.postPerson(this.personToCreate).subscribe(
       (src)=> {
         this.personToCreate = src;
+        console.log("test111");
       },
       (error) => {
         this.messageService.add({
@@ -206,7 +186,6 @@ export class AddPersonComponent implements OnInit {
   submit() {
     this.createNewPerson();
     this.boolSubmit = true;
-
   }
 
   switchValue(boolVal: boolean) {
@@ -232,6 +211,8 @@ export class AddPersonComponent implements OnInit {
   hideDialog1() {
     this.display1 = false;
   }
+
+
 
   confirm() {
     this.confirmationService.confirm({
@@ -263,6 +244,10 @@ export class AddPersonComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  getCurrentYear(){
+    this.currentYear = new Date().getFullYear();
   }
 
 

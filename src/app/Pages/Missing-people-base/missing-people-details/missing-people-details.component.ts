@@ -6,13 +6,11 @@ import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { PersonHttpService } from '../../../Services/person/person-http.service';
 import { IPersonDetails } from 'src/app/Models/IPersonDetails';
+import { IPersonUpdate } from 'src/app/Models/IPersonUpdate';
+import { IPhoto } from 'src/app/Models/IPhoto';
+import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
-export interface Photos {
-  previewImageSrc?: string;
-  thumbnailImageSrc?: string;
-  alt?: string;
-  title?: string;
-}
 @Component({
   templateUrl: './missing-people-details.component.html',
   styleUrls: ['./missing-people-details.component.scss'],
@@ -26,23 +24,23 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
   displayIfClientUpdate = false;
   paramRouteSub: Subscription;
   personId: number;
+  city: string = '';
+  riskDescription: string = '';
+  otherDetails: string = '';
   isAtRisk: boolean = false;
   photoNames: string[] = [];
+  personToUpdate: IPersonUpdate = {
+    city: '',
+    isAtRisk: null,
+    riskDescription: '',
+    otherDetails: '',
+    isWaiting: null,
+  };
+  base64photo: string;
+  photos: string[] = [];
 
-  images: Photos[] = [
-    {
-      previewImageSrc: 'assets/foto1.jpg',
-      thumbnailImageSrc: 'assets/foto1.jpg',
-      alt: 'Desc1',
-      title: 'Title1',
-    },
-    {
-      previewImageSrc: 'assets/foto2.jpg',
-      thumbnailImageSrc: 'assets/foto2.jpg',
-      alt: 'Desc2',
-      title: 'Title2',
-    },
-  ];
+
+  images: IPhoto[] = [];
 
   responsiveOptions: any[] = [
     {
@@ -64,7 +62,9 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
     private messageService: MessageService,
     private activatedRoute: ActivatedRoute,
     private location: Location,
-    private personHttpService: PersonHttpService
+    private personHttpService: PersonHttpService,
+    private router: Router,
+    private sanitization:DomSanitizer
   ) {}
   ngOnDestroy(): void {
     if (this.paramRouteSub !== undefined) {
@@ -74,7 +74,7 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.paramRouteSub = this.activatedRoute.params.subscribe((params) => {
-      this.personId = params.id;
+      this.personId = parseInt(params.id);
       this.getPeopleById(this.personId);
     });
   }
@@ -82,6 +82,8 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
   getPeopleById(id: number) {
     this.personHttpService.getPeopleById(id).subscribe((src) => {
       this.person = src;
+      this.getPersonPhotoList();
+      this.getPhotoList();
     }, (error) => {
       this.messageService.add({
         severity: 'error',
@@ -90,6 +92,81 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
       });
     });
 
+  }
+
+  putPerson(id:number){
+    this.personHttpService.putPeopleById(id, this.personToUpdate).subscribe(
+      (src)=> {
+        this.personToUpdate = src;
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Rejected',
+          detail: 'Nie udało się zmienić danych osoby',
+        });
+      }
+    );
+  }
+
+  getPhoto(name: string){
+    this.personHttpService.getPhotoFile(name).subscribe(
+      (src) => {
+        // this.photos.push(src);
+        this.images.push({alt:name,previewImageSrc:src,thumbnailImageSrc:src,title:name});
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Rejected',
+          detail: 'Nie udało się wczytać zdjęcia',
+        });
+      }
+    )
+  }
+
+  updatePerson(){
+    if(this.person.dangerOfLife != true){
+      this.personToUpdate.isAtRisk = this.isAtRisk;
+    }
+    else{
+      this.personToUpdate.isAtRisk = this.person.dangerOfLife;
+    }
+    this.personToUpdate.isWaiting = true;
+    if(this.city != ''){
+      this.personToUpdate.city = this.city;
+    }
+    else{
+      this.personToUpdate.city = this.person.city;
+    }
+    if(this.riskDescription != ''){
+      this.personToUpdate.riskDescription = this.riskDescription;
+    }
+    else{
+      this.personToUpdate.riskDescription = this.person.description;
+    }
+    if(this.otherDetails != ''){
+      this.personToUpdate.otherDetails = this.otherDetails;
+    }
+
+    this.putPerson(this.person.id);
+  }
+
+  getPersonPhotoList() {
+    this.person.pictures.forEach(s =>  {
+      // this.images.push({
+      //   previewImageSrc: this.sanitization.bypassSecurityTrustUrl("assets/" + s),
+      //   alt: s,
+      //   thumbnailImageSrc: this.sanitization.bypassSecurityTrustUrl("assets/" + s),
+      //   title: s,
+      // });
+    })
+  }
+
+  getPhotoList() {
+    this.person.pictures.forEach(s => {
+        this.getPhoto(s);
+    })
   }
 
   showDialog() {
@@ -123,14 +200,16 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
       message: 'Jesteś pewien, że powierdzasz informacje?',
       header: 'Potwierdź',
       icon: 'pi pi-exclamation-triangle',
+      key: 'clientIsLostPerson',
       accept: () => {
         this.messageService.add({
           severity: 'info',
           summary: 'Potwierdzono',
           detail: 'Zaakceptowano',
         });
-        this.displayIfClientIsLostPerson = false;
-        this.waitingPerson();
+        this.updatePerson();
+        this.router.navigateByUrl('/main');
+
       },
       reject: () => {
         this.messageService.add({
@@ -142,4 +221,29 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
       },
     });
   }
+
+  confirm2() {
+    this.confirmationService.confirm({
+        message: 'Jesteś pewien, ze potwierdzasz informacje?',
+        header: 'Potwierdź',
+        icon: 'pi pi-info-circle',
+        key: 'updatePerson',
+        accept: () => {
+            this.messageService.add({severity:'info', summary:'Confirmed', detail:'Record deleted'});
+            this.updatePerson();
+            this.router.navigateByUrl('/main');
+        },
+        reject: (type) => {
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Nie potwierdzono',
+            detail: 'Nie potwierdziłeś',
+          });
+          this.displayIfClientUpdate = false;
+        }
+      }
+    );
+
+    }
+
 }

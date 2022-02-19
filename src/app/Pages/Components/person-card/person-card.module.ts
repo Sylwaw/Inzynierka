@@ -6,6 +6,7 @@ import { CardModule } from 'primeng/card';
 import { PersonCardComponent } from './person-card.component';
 import { DataViewModule } from 'primeng/dataview';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   declarations: [PersonCardComponent],
@@ -16,6 +17,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     CardModule,
     DataViewModule,
     AppRoutingModule,
+    MessagesModule
   ],
   exports: [PersonCardComponent]
 })

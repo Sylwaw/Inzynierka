@@ -12,6 +12,7 @@ import { AddImageModule } from '../../Components/add-image/add-image.module';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     AddImageModule,
     CardModule,
     CheckboxModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [ConfirmationService]
 })

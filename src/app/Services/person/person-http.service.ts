@@ -8,7 +8,6 @@ import { ICity } from '../../Models/ICity';
 import { IPersonCreate } from 'src/app/Models/IPersonCreate';
 import { IPersonUpdate } from 'src/app/Models/IPersonUpdate';
 
-
 // serwis widoczny w całej aplikacji
 @Injectable({
   providedIn: 'root',
@@ -16,6 +15,7 @@ import { IPersonUpdate } from 'src/app/Models/IPersonUpdate';
 export class PersonHttpService {
   linkHttp = `${environment.apiUrl}/api/Person/`;
   linkHttp2 = `${environment.apiUrl}/api/City/`;
+  linkHttp3 = `${environment.apiUrl}/api/Photo/`;
 
   constructor(private http: HttpClient) {}
 
@@ -28,17 +28,31 @@ export class PersonHttpService {
     return this.http.get<IPersonCard[]>(this.linkHttp + 'getAllPeople');
   }
 
-  getCityByName(value: string): Observable<ICity>{
+  getCityByName(value: string): Observable<ICity> {
     return this.http.get<ICity>(this.linkHttp2 + 'cityByName/' + value);
   }
 
-  postPerson(person:IPersonCreate): Observable<IPersonCreate> {
-    return this.http.post<IPersonCreate>(this.linkHttp + 'createPerson', person);
+  postPerson(person: IPersonCreate): Observable<IPersonCreate> {
+    return this.http.post<IPersonCreate>(
+      this.linkHttp + 'createPerson',
+      person
+    );
   }
 
   putPeopleById(id: number, person: IPersonUpdate): Observable<IPersonUpdate> {
-    return this.http.put<IPersonUpdate>(this.linkHttp + 'updatePerson/' + id, person);
+    return this.http.put<IPersonUpdate>(
+      this.linkHttp + 'updatePerson/' + id,
+      person
+    );
   }
 
+  deletePeopleById(id: number) {
+    return this.http.delete(this.linkHttp + 'deletePerson/' + id);
+  }
 
+  getPhotoFile(name: string): Observable<string> {
+
+
+    return this.http.get<string>(this.linkHttp3 + 'GetBase64photo/' + name);
+  }
 }

@@ -16,6 +16,6 @@ export interface IPersonCreate {
     description?: string;
     yearOfBirth?: number;
     dictEyeID: number;
-    // pictures?: string[];
+    pictures?: string[];
     isWaiting: boolean;
 }

@@ -1,89 +1,135 @@
-<!--Adding new person menu-->
-<!-- <br>
-<div class="card">
-    <p-toast></p-toast>
-    <p-steps [model]="items" [readonly]="true"></p-steps>
-</div>
-<router-outlet></router-outlet> -->
-<div class="container">
-  <div class="add-data flex-item ">
-    <span class="p-float-label field">
-      <input [(ngModel)] = "personToCreate.name" id="float-input" type="text" pInputText [ngClass]="checkIfNull(personToCreate.name) ? 'ng-invalid ng-dirty' : ''" />
-      <label for="float-input">Imię</label>
-    </span>
-    <span class="p-float-label field">
-      <input [(ngModel)] = "personToCreate.secondName" id="float-input" type="text" pInputText />
-      <label for="float-input">Drugie imię (Opcjonalnie)</label>
-    </span>
-    <span class="p-float-label field">
-      <input [(ngModel)] = "personToCreate.surname" id="float-input" type="text" pInputText />
-      <label for="float-input">Nazwisko</label>
-    </span>
-    <span class="p-float-label field">
-      <input [(ngModel)] = "personToCreate.yearOfBirth" id="float-input" type="text" pInputText />
-      <label for="float-input">Rok urodzenia</label>
-    </span>
-    <span class="p-float-label field">
-      <input [(ngModel)]="cityName" id="float-input" type="text" pInputText />
-      <label for="float-input">Ostatnie miejsce pobytu</label>
-    </span>
-    <span class="p-float-label field">
-      <p-calendar
+
+<form>
+  <div class="form-group p-float-label">
+    <input [(ngModel)] = "personToCreate.name" minlength="3" #name="ngModel" pattern="[a-zA-Z ]*" name="name" required class="form-control" id="name" type="text" pInputText />
+    <label for="name">Imię</label>
+    <div class="allert alert-danger" *ngIf="name.touched && !name.valid">
+      <div *ngIf="name.errors.minlength">Wprowadź minimum 3 znaki</div>
+      <div *ngIf="name.errors.required">Pole wymagane</div>
+      <div *ngIf="name.errors.pattern">Wprowadź poprawne imię (tylko litery)</div>
+    </div>
+  </div>
+  <div class="form-group p-float-label">
+    <input [(ngModel)] = "personToCreate.secondName" minlength="3" #secondName="ngModel" pattern="[a-zA-Z ]*" name="secondName" class="form-control" id="secondName" type="text" pInputText />
+    <label for="secondName">Drugie imię (opcjonalne)</label>
+    <div class="allert alert-danger" *ngIf="secondName.touched && !secondName.valid">
+      <div *ngIf="secondName.errors.minlength">Wprowadź minimum 3 znaki</div>
+      <div *ngIf="name.errors.pattern">Wprowadź poprawne imię (tylko litery)</div>
+    </div>
+  </div>
+  <div class="form-group p-float-label">
+    <input [(ngModel)] = "personToCreate.surname" minlength="3" #surname="ngModel" name="surname" pattern="[a-zA-Z ]*" required class="form-control" id="surname" type="text" pInputText />
+    <label for="surname">Nazwisko</label>
+    <div class="allert alert-danger" *ngIf="surname.touched && !surname.valid">
+      <div *ngIf="surname.errors.minlength">Wprowadź minimum 3 znaki</div>
+      <div *ngIf="surname.errors.required">Pole wymagane</div>
+      <div *ngIf="surname.errors.pattern">Wprowadź poprawne Nazwisko (tylko litery)</div>
+    </div>
+  </div>
+
+  <div class="p-dropdown form-group field">
+    <p-dropdown
+      placeholder="Rok urodzenia"
+      #dropYear="ngModel"
+      class="form-control"
+      [options]="year"
+      [(ngModel)]="selectedValueYear"
+      name="yearOfBirth"
+      optionLabel="viewValue"
+      [filter]="true"
+      filterMatchMode="startsWith"
+      required
+    ></p-dropdown>
+  </div>
+  <div class="form-group p-float-label">
+    <input [(ngModel)]="cityName" class="form-control" #city="ngModel" name="cityName" required id="city" type="text" pInputText />
+    <label for="city">Ostatnie miejsce pobytu</label>
+    <div class="allert alert-danger" *ngIf="city.touched && !city.valid">Ostatnie miejsce pobytu jest wymagane</div>
+  </div>
+  <div class="form-group p-float-label">
+    <p-calendar
         [(ngModel)] = "dateOfDisappear"
+        #dateOfDis="ngModel"
+        class="form-control"
         id="date-input"
         [maxDate]="maxDateValue"
+        name="date-input"
+        required
       ></p-calendar>
       <label for="date-input">Data zaginięcia</label>
-    </span>
+      <div class="allert alert-danger" *ngIf="dateOfDis.touched && !dateOfDis.valid">Data zaginięcia jest wymagana</div>
   </div>
-  <div class="add-details flex-item">
-    <span class="p-dropdown field">
-      <p-dropdown
-        placeholder="Kolor oczu"
-        [options]="eyes"
-        [(ngModel)]="selectedValueEyes"
-        optionLabel="viewValue"
-      ></p-dropdown>
-    </span>
-    <span class="p-dropdown field">
-      <p-dropdown
+  <div class="p-dropdown form-group field">
+    <p-dropdown
+      placeholder="Kolor oczu"
+      #dropEye="ngModel"
+      class="form-control"
+      [options]="eyes"
+      [(ngModel)]="selectedValueEyes"
+      name="eyesDropdown"
+      optionLabel="viewValue"
+      required
+    ></p-dropdown>
+    <div class="allert alert-danger" *ngIf="dropEye.touched && !dropEye.valid">Wymagane</div>
+    <p-dropdown
         [options]="heightMin"
+        filterMatchMode="startsWith"
+        class="form-control"
+        #dropHeightMin="ngModel"
+        name="heightMin"
         [(ngModel)]="selectedValueHeightMin"
         optionLabel="viewValue"
         placeholder="Wzrost od"
         [filter]="true"
         [style]="{ width: '10vw' }"
+        required
       ></p-dropdown>
+      <div class="allert alert-danger" *ngIf="dropHeightMin.touched && !dropHeightMin.valid">Wymagane</div>
       <p-dropdown
         [options]="heightMax"
+        #dropHeightMax="ngModel"
+        filterMatchMode="startsWith"
+        class="form-control"
+        name="heightMax"
         [(ngModel)]="selectedValueHeightMax"
         optionLabel="viewValue"
         placeholder="Wzrost do"
         [filter]="true"
         [style]="{ width: '10vw' }"
+        required
       ></p-dropdown>
-    </span>
-    <span class="p-dropdown field">
+      <div class="allert alert-danger" *ngIf="dropHeightMax.touched && !dropHeightMin.valid">Wymagane</div>
       <p-dropdown
         [options]="weightMin"
+        #dropWeightMin="ngModel"
+        filterMatchMode="startsWith"
+        class="form-control"
+        name="weightMin"
         [(ngModel)]="selectedValueWeightMin"
         optionLabel="viewValue"
         placeholder="Waga od"
         [filter]="true"
         [style]="{ width: '10vw' }"
+        required
       ></p-dropdown>
+      <div class="allert alert-danger" *ngIf="dropWeightMin.touched && !dropWeightMin.valid">Wymagane</div>
       <p-dropdown
         [options]="weightMax"
+        #dropWeightMax="ngModel"
+        filterMatchMode="startsWith"
+        class="form-control"
+        name="weightMax"
         [(ngModel)]="selectedValueWeightMax"
         optionLabel="viewValue"
         placeholder="Waga do"
         [filter]="true"
         [style]="{ width: '10vw' }"
+        required
       ></p-dropdown>
-    </span>
-    <div>
-      <div class="p-checkbox field">
-        <p-checkbox inputId="danger" [binary]="true" (click)="riskIsTrue" [(ngModel)]="isAtRisk" ></p-checkbox>
+      <div class="allert alert-danger" *ngIf="dropWeightMax.touched && !dropWeightMax.valid">Wymagane</div>
+  </div>
+  <div class="form-group">
+    <p-checkbox inputId="danger" [binary]="true" (click)="riskIsTrue" [(ngModel)]="isAtRisk" name="isAtRisk"></p-checkbox>
         <label for="danger">Zagrożenie życia</label>
         <p-dialog [(visible)]="display" [style]="{width: '50vw'}" [closable]="false">WAŻNE!<br> Zaznacz i opisz tylko w przypadku osoby:
         <br> -małoletniej w wieku do 10 lat
@@ -100,79 +146,92 @@
         nieodnalezienia
         </p-dialog>
         <i class="pi pi-info-circle" (mouseover)="showDialog()" (mouseleave)="hideDialog()"></i>
-    </div>
-    </div>
-
-
-    <div class="p-float-label field text-input" *ngIf="isAtRisk">
-        <textarea id="float-input" pInputTextarea [(ngModel)]="personToCreate.description" placeholder="Opisz powody zagrożenia"
+  </div>
+  <div class="form-group" *ngIf="isAtRisk">
+    <textarea id="float-input" maxlength="40" #riskDesc="ngModel" class="form-control" name="riskDescription" pInputTextarea [(ngModel)]="personToCreate.description" placeholder="Opisz powody zagrożenia (max 40 znaków)"
             ></textarea>
-    </div>
-
-    <div class="field">
-      <p>Znaki szczególne - wybierz, co chcesz opisać</p>
-      <div>
-        <div class="p-checkbox">
-          <p-checkbox inputId="tatoos" [(ngModel)]="boolTatoosDescription" [binary]="true" (click)="switchValue(boolTatoosDescription)"></p-checkbox>
-          <label for="tatoos">Tatuaże</label>
-        </div>
-      </div>
-      <div class="text-input" *ngIf = "boolTatoosDescription" >
-        <textarea [(ngModel)] = "personToCreate.tatoosDescription" id="float-input" pInputTextarea placeholder="Opisz tatuaże zaginionego"></textarea>
-      </div>
-      <div>
-        <div class="p-checkbox">
-          <p-checkbox inputId="scars" [(ngModel)]="boolScarsDescription" [binary]="true" (click)="switchValue(boolScarsDescription)"></p-checkbox>
-          <label for="scars">Blizny</label>
-        </div>
-      </div>
-      <div class="text-input" *ngIf = "boolScarsDescription">
-        <textarea [(ngModel)] = "personToCreate.scarsDescription" id="float-input" pInputTextarea placeholder="Opisz blizny zaginionego"></textarea>
-      </div>
-      <div>
-        <div class="p-checkbox">
-          <p-checkbox inputId="other" [(ngModel)]="boolOtherDescription" [binary]="true" (click)="switchValue(boolOtherDescription)"></p-checkbox>
-          <label for="other">Inne</label>
-        </div>
-      </div>
-      <div class="text-input" *ngIf = "boolOtherDescription">
-        <textarea [(ngModel)] = "personToCreate.otherDetails" id="float-input" pInputTextarea placeholder="Opisz inne istotne cechy"></textarea>
-      </div>
-      <div>
-        <div  class="p-checkbox">
-          <p-checkbox inputId="clothes" [(ngModel)]="boolClothesDescription" [binary]="true" (click)="switchValue(boolClothesDescription)"></p-checkbox>
-          <label for="clothes">Ubiór</label>
-        </div>
-      </div>
-      <div class="text-input" *ngIf = "boolClothesDescription">
-        <textarea [(ngModel)] = "personToCreate.clothesDescription" id="float-input" pInputTextarea placeholder="Opisz ubiór w dniu zaginięcia"></textarea>
+            <div class="allert alert-danger" *ngIf="riskDesc.touched && !riskDesc.valid">
+                <div *ngIf="riskDesc.errors.maxlength">Wprowadź max 30 znaków</div>
+            </div>
+  </div>
+  <div class="form-group">
+    <p>Znaki szczególne - wybierz, co chcesz opisać</p>
+    <div>
+      <div class="p-checkbox">
+        <p-checkbox name="tatoosBool" inputId="tatoos" [(ngModel)]="boolTatoosDescription" [binary]="true" (click)="switchValue(boolTatoosDescription)"></p-checkbox>
+        <label for="tatoos">Tatuaże</label>
       </div>
     </div>
+    <div class="text-input" *ngIf = "boolTatoosDescription" >
+      <textarea name="tatoosDescription" class="form-control" [(ngModel)] = "personToCreate.tatoosDescription" id="float-input" pInputTextarea placeholder="Opisz tatuaże zaginionego"></textarea>
+    </div>
+    <div>
+      <div class="p-checkbox">
+        <p-checkbox name="scarsBool" inputId="scars" [(ngModel)]="boolScarsDescription" [binary]="true" (click)="switchValue(boolScarsDescription)"></p-checkbox>
+        <label for="scars">Blizny</label>
+      </div>
+    </div>
+    <div class="text-input" *ngIf = "boolScarsDescription">
+      <textarea name="scarsDescription" [(ngModel)] = "personToCreate.scarsDescription" class="form-control" id="float-input" pInputTextarea placeholder="Opisz blizny zaginionego"></textarea>
+    </div>
+    <div>
+      <div class="p-checkbox">
+        <p-checkbox name="otherBool" inputId="other" [(ngModel)]="boolOtherDescription" [binary]="true" (click)="switchValue(boolOtherDescription)"></p-checkbox>
+        <label for="other">Inne</label>
+      </div>
+    </div>
+    <div class="text-input" *ngIf = "boolOtherDescription">
+      <textarea name="otherDescription" [(ngModel)] = "personToCreate.otherDetails" class="form-control" id="float-input" pInputTextarea placeholder="Opisz inne istotne cechy"></textarea>
+    </div>
+    <div>
+      <div  class="p-checkbox">
+        <p-checkbox name="clothesBool" inputId="clothes" [(ngModel)]="boolClothesDescription" [binary]="true" (click)="switchValue(boolClothesDescription)"></p-checkbox>
+        <label for="clothes">Ubiór</label>
+      </div>
+    </div>
+    <div class="text-input" *ngIf = "boolClothesDescription">
+      <textarea name="clothesDescription" [(ngModel)] = "personToCreate.clothesDescription" class="form-control" id="float-input" pInputTextarea placeholder="Opisz ubiór w dniu zaginięcia"></textarea>
+    </div>
+  </div>
+  <div class="add-photo flex-item c">
+    <app-add-image (nameImage)="nameImage($event)"></app-add-image>
+  </div>
+</form>
 
-  </div>
-  <div class="add-photo flex-item">
-    <app-add-image></app-add-image>
-  </div>
-</div>
+
 <div class="button-submit">
   <button pButton pRipple type="button" icon="pi pi-check" label="Zgłoś" class="p-button-raised p-button-success" (click) = "submit()"></button>
   <p-dialog header="Ważne!" [(visible)]="boolSubmit">
     W celu weryfikacji Twojego zgłoszenia prosimy o pozostawienie danych kontaktowych.
     <div class="margin-top-input">
-        <span class="p-float-label p-mb-2">
-            <input id="float-input" type="text" pInputText>
-            <label for="float-input">Numer telefonu</label>
-        </span>
-        <span class="p-float-label p-mt-4">
-            <input id="float-input" type="text" pInputText>
-            <label for="float-input">Email</label>
-        </span>
-    </div>
+      <form>
+        <span class="p-float-label p-mb-2 form-group">
+          <input minlength="9" maxlength="9" #phone="ngModel" pattern="[0-9 ]*" name="phone" class="form-control" required id="float-input" ngModel  type="text" pInputText>
+          <label for="float-input">Numer telefonu</label>
+          <div class="allert alert-danger" *ngIf="phone.touched && !phone.valid">
+            <div *ngIf="phone.errors.required">Wymagane</div>
+            <div *ngIf="phone.errors.minlength">Wprowadź numer 9-cyfrowy</div>
+            <div *ngIf="phone.errors.pattern">Wprowadź poprawny numer telefonu (tylko cyfry)</div>
+          </div>
+      </span>
+      <span class="p-float-label p-mt-4 form-group">
+          <input #email="ngModel" ngModel name="email" class="form-control" required id="float-input" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" pInputText>
+          <label for="float-input">Email</label>
+          <div class="allert alert-danger" *ngIf="email.touched && !email.valid">
+            <div *ngIf="email.errors.required">Pole wymagane</div>
+            <div *ngIf="email.errors.pattern">Wprowadź poprawny adres email</div>
+          </div>
+      </span>
+
+
     <div class="p-grid p-nogutter p-justify-end">
         <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
-        <p-button (click)="confirm()" icon="pi pi-check" label="Potwierdzam" styleClass="p-mr-2"></p-button>
+        <p-button [disabled]="!phone.valid" (click)="confirm()" icon="pi pi-check" label="Potwierdzam" styleClass="p-mr-2"></p-button>
     </div>
+  </form>
+</div>
 </p-dialog>
 </div>
+
 <router-outlet></router-outlet>
 

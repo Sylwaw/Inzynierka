@@ -27,8 +27,6 @@ cityName: string;
 distance: number = 5;
 myLongitude: number;
 myLatitude: number;
-warsawLatitude = 52.23194444;
-warsawLongitude = 21.00666667;
 ifLocationAvailable = true;
 displayPeopleInArea = false;
 readonly PI = 3.141592653589793;
@@ -53,8 +51,6 @@ readonly RADIUS = 6378.16;
     });
 
     this.getAllPeople();
-
-
   }
 
     // Convert degrees to Radians
@@ -74,10 +70,6 @@ readonly RADIUS = 6378.16;
       * Math.cos(this.Radians(latitude2)) * (Math.sin(longitudesDistance / 2) * Math.sin(longitudesDistance / 2));
       let angle = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       return angle * this.RADIUS;
-  }
-
-  public displayIfInCertainDistance(distance: number){
-
   }
 
   public getAllPeople(): void {

@@ -18,6 +18,14 @@ img {
   justify-content: space-between;
 }
 
+.product-waiting{
+  border-color: red;
+}
+
+.verification-text{
+  text-decoration: double;
+}
+
 
 
 

@@ -1,9 +1,8 @@
-<p-card>
+<!-- <p-card>
 <ng-template pTemplate="header"> Zdjęcie zaginionego </ng-template>
 <ng-template pTemplate="subheader">
   Wczytaj zdjęcia osoby zaginionej (maksymalnie 2MB)
 </ng-template>
-  <!-- <div class="card"> -->
     <p-fileUpload
       name="demo[]"
       url="./upload.php"
@@ -20,6 +19,19 @@
         </ul>
       </ng-template>
     </p-fileUpload>
-  <!-- </div> -->
 </p-card>
-<p-toast></p-toast>
+<p-toast></p-toast> -->
+<div class="row" style="margin-bottom:15px;">
+  <div class="col-md-3">
+    <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+    <button type="button" class="btn btn-success" (click)="file.click()">Dodaj zdjęcie</button>
+  </div>
+  <div class="col-md-4">
+    <span class="upload" *ngIf="progress > 0">
+      {{progress}}%
+    </span>
+    <span class="upload" *ngIf="message">
+      {{message}}
+    </span>
+  </div>
+</div>

@@ -75,4 +75,5 @@ export class MissingPeopleBaseComponent implements OnInit {
       }
     );
   }
+
 }

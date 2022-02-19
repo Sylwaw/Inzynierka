@@ -9,16 +9,21 @@
     </div>
 </div>
 <div class="product-grid-item-content">
+    <p class="verification-text" *ngIf="person.isWaiting == true">Informacje w trakcie weryfikacji</p>
     <div class="product-name">{{person.name}} {{person.surname}}</div>
     <div class="allert" *ngIf = "person.isAtRisk">{{person.description}}</div>
     <div class="product-description">{{actualAge(person.yearOfBirth)}} lat</div>
-    <div [ngClass]="person.isWaiting == false ? '' : 'images-waiting'"><img [src]="'assets/' + person.picture" /></div>
+    <div [ngClass]="person.isWaiting == false ? '' : 'images-waiting'"><img [src]="imageSource" /></div>
 </div>
 <div class="product-grid-item-bottom">
     <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" [disabled]="person.isWaiting == true"
         [routerLink]="['/detail', person.id]"></button> <!--Exact person details window-->
     <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded" *ngIf = "person.isWaiting == true" (click) = "notWaiting()"
         ></button>
+    <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" *ngIf = "person.isWaiting == true" (click) = "delete()"
+        ></button>
+    <!-- <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click) = "delete()"
+        ></button> -->
 </div>
 </div>
 

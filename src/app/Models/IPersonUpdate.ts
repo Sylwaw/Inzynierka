@@ -3,6 +3,6 @@ export interface IPersonUpdate{
   isAtRisk?: boolean;
   riskDescription?: string;
   otherDetails?: string;
-  isWaiting: boolean;
+  isWaiting?: boolean;
 }
 
