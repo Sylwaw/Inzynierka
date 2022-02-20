@@ -1,6 +1,3 @@
-<!--One card from the base (before details)-->
-
-<!-- <div [ngClass]="person.isWaiting == false ? 'product-grid-item card' : 'product-grid-item-waiting card'"> -->
 <div class="product-grid-item card">
   <div class="product-grid-item-top">
     <div>
@@ -18,12 +15,6 @@
 <div class="product-grid-item-bottom">
     <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" [disabled]="person.isWaiting == true"
         [routerLink]="['/detail', person.id]"></button> <!--Exact person details window-->
-    <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded" *ngIf = "person.isWaiting == true" (click) = "notWaiting()"
-        ></button>
-    <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" *ngIf = "person.isWaiting == true" (click) = "delete()"
-        ></button>
-    <!-- <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click) = "delete()"
-        ></button> -->
 </div>
 </div>
 

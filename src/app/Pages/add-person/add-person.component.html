@@ -1,29 +1,29 @@
 
 <form>
   <div class="form-group p-float-label">
-    <input [(ngModel)] = "personToCreate.name" minlength="3" #name="ngModel" pattern="[a-zA-Z ]*" name="name" required class="form-control" id="name" type="text" pInputText />
+    <input [(ngModel)] = "personToCreate.name" minlength="3" #name="ngModel" pattern="[A-ZĄĆĘÓŚŁŻŹŃ]+[a-zA-Ząćęóśłżźń ]*" name="name" required class="form-control" id="name" type="text" pInputText />
     <label for="name">Imię</label>
     <div class="allert alert-danger" *ngIf="name.touched && !name.valid">
       <div *ngIf="name.errors.minlength">Wprowadź minimum 3 znaki</div>
       <div *ngIf="name.errors.required">Pole wymagane</div>
-      <div *ngIf="name.errors.pattern">Wprowadź poprawne imię (tylko litery)</div>
+      <div *ngIf="name.errors.pattern">Wprowadź poprawne imię (tylko litery, pierwsza duża)</div>
     </div>
   </div>
   <div class="form-group p-float-label">
-    <input [(ngModel)] = "personToCreate.secondName" minlength="3" #secondName="ngModel" pattern="[a-zA-Z ]*" name="secondName" class="form-control" id="secondName" type="text" pInputText />
+    <input [(ngModel)] = "personToCreate.secondName" minlength="3" #secondName="ngModel" pattern="[A-ZĄĆĘÓŚŁŻŹŃ]+[a-zA-Ząćęóśłżźń  ]*" name="secondName" class="form-control" id="secondName" type="text" pInputText />
     <label for="secondName">Drugie imię (opcjonalne)</label>
     <div class="allert alert-danger" *ngIf="secondName.touched && !secondName.valid">
       <div *ngIf="secondName.errors.minlength">Wprowadź minimum 3 znaki</div>
-      <div *ngIf="name.errors.pattern">Wprowadź poprawne imię (tylko litery)</div>
+      <div *ngIf="name.errors.pattern">Wprowadź poprawne imię (tylko litery, pierwsza duża)</div>
     </div>
   </div>
   <div class="form-group p-float-label">
-    <input [(ngModel)] = "personToCreate.surname" minlength="3" #surname="ngModel" name="surname" pattern="[a-zA-Z ]*" required class="form-control" id="surname" type="text" pInputText />
+    <input [(ngModel)] = "personToCreate.surname" minlength="3" #surname="ngModel" name="surname" pattern="[A-Z]+[a-zA-Z ]*" required class="form-control" id="surname" type="text" pInputText />
     <label for="surname">Nazwisko</label>
     <div class="allert alert-danger" *ngIf="surname.touched && !surname.valid">
       <div *ngIf="surname.errors.minlength">Wprowadź minimum 3 znaki</div>
       <div *ngIf="surname.errors.required">Pole wymagane</div>
-      <div *ngIf="surname.errors.pattern">Wprowadź poprawne Nazwisko (tylko litery)</div>
+      <div *ngIf="surname.errors.pattern">Wprowadź poprawne Nazwisko (tylko litery, pierwsza duża)</div>
     </div>
   </div>
 
@@ -31,7 +31,7 @@
     <p-dropdown
       placeholder="Rok urodzenia"
       #dropYear="ngModel"
-      class="form-control"
+      class="form-control;;"
       [options]="year"
       [(ngModel)]="selectedValueYear"
       name="yearOfBirth"
@@ -40,6 +40,9 @@
       filterMatchMode="startsWith"
       required
     ></p-dropdown>
+    <div class="allert alert-danger" *ngIf="dropYear.touched && !dropYear.valid">
+      <div *ngIf="dropYear.errors.required">Pole wymagane</div>
+    </div>
   </div>
   <div class="form-group p-float-label">
     <input [(ngModel)]="cityName" class="form-control" #city="ngModel" name="cityName" required id="city" type="text" pInputText />
@@ -63,7 +66,7 @@
     <p-dropdown
       placeholder="Kolor oczu"
       #dropEye="ngModel"
-      class="form-control"
+      class="form-control;;"
       [options]="eyes"
       [(ngModel)]="selectedValueEyes"
       name="eyesDropdown"
@@ -74,7 +77,7 @@
     <p-dropdown
         [options]="heightMin"
         filterMatchMode="startsWith"
-        class="form-control"
+        class="form-control;;"
         #dropHeightMin="ngModel"
         name="heightMin"
         [(ngModel)]="selectedValueHeightMin"
@@ -90,7 +93,7 @@
         [options]="heightMax"
         #dropHeightMax="ngModel"
         filterMatchMode="startsWith"
-        class="form-control"
+        class="form-control;;"
         name="heightMax"
         [(ngModel)]="selectedValueHeightMax"
         optionLabel="viewValue"
@@ -104,9 +107,10 @@
         [options]="weightMin"
         #dropWeightMin="ngModel"
         filterMatchMode="startsWith"
-        class="form-control"
+        class="form-control;;"
         name="weightMin"
         [(ngModel)]="selectedValueWeightMin"
+        (onChange)="changeMaxWeight()"
         optionLabel="viewValue"
         placeholder="Waga od"
         [filter]="true"
@@ -118,7 +122,7 @@
         [options]="weightMax"
         #dropWeightMax="ngModel"
         filterMatchMode="startsWith"
-        class="form-control"
+        class="form-control;;"
         name="weightMax"
         [(ngModel)]="selectedValueWeightMax"
         optionLabel="viewValue"
@@ -227,7 +231,7 @@
 
     <div class="p-grid p-nogutter p-justify-end">
         <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
-        <p-button [disabled]="!phone.valid" (click)="confirm()" icon="pi pi-check" label="Potwierdzam" styleClass="p-mr-2"></p-button>
+        <p-button [disabled]="!phone.valid || !email.valid" (click)="confirm(!phone.valid || !email.valid)" icon="pi pi-check" label="Potwierdzam" styleClass="p-mr-2"></p-button>
     </div>
   </form>
 </div>

@@ -62,6 +62,7 @@ export class AddPersonComponent implements OnInit {
   heightMin: ChoiceList[];
   heightMax: ChoiceList[];
   heightMaxBase: ChoiceList[];
+  weightMaxBase: ChoiceList[];
   weightMin: ChoiceList[];
   weightMax: ChoiceList[];
   year: ChoiceList[];
@@ -121,6 +122,7 @@ export class AddPersonComponent implements OnInit {
     for (let i = 1; i < 200; i++) {
       this.weightMax.push({ viewValue: i + 'kg', value: i });
     }
+    this.weightMaxBase = [...this.weightMax];
 
     this.getCurrentYear();
 
@@ -132,6 +134,10 @@ export class AddPersonComponent implements OnInit {
 
   changeMaxHeight(): void {
     this.heightMax = this.heightMaxBase.filter(height => height.value > this.selectedValueHeightMin.value)
+  }
+
+  changeMaxWeight(): void {
+    this.weightMax = this.weightMaxBase.filter(weight => weight.value > this.selectedValueWeightMin.value)
   }
 
 
@@ -188,7 +194,7 @@ export class AddPersonComponent implements OnInit {
   }
 
   submit() {
-    this.createNewPerson();
+
     this.boolSubmit = true;
   }
 
@@ -218,36 +224,33 @@ export class AddPersonComponent implements OnInit {
 
 
 
-  confirm() {
-    this.confirmationService.confirm({
-      message: 'Jesteś pewien, że powierdzasz informacje?',
-      header: 'Confirmation',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Confirmed',
-          detail: 'Zaakceptowano',
-        });
-        this.boolSubmit = false;
-      },
-      reject: () => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Rejected',
-          detail: 'Nie potwierdziłeś',
-        });
-        this.boolSubmit = false;
-      },
-    });
-    this.router.navigateByUrl('/main');
-  }
-
-  checkIfNull(value: any): boolean{
-    if(value == '' || null){
-      return true;
+  confirm(isInvalid: boolean) {
+    if(!isInvalid){
+      this.createNewPerson();
+      this.router.navigateByUrl('/main');
     }
-    return false;
+    // this.confirmationService.confirm({
+    //   message: 'Jesteś pewien, że powierdzasz informacje?',
+    //   header: 'Confirmation',
+    //   icon: 'pi pi-exclamation-triangle',
+    //   accept: () => {
+    //     this.messageService.add({
+    //       severity: 'info',
+    //       summary: 'Confirmed',
+    //       detail: 'Zaakceptowano',
+    //     });
+    //     this.boolSubmit = false;
+    //   },
+    //   reject: () => {
+    //     this.messageService.add({
+    //       severity: 'info',
+    //       summary: 'Rejected',
+    //       detail: 'Nie potwierdziłeś',
+    //     });
+    //     this.boolSubmit = false;
+    //   },
+    // });
+
   }
 
   getCurrentYear(){
