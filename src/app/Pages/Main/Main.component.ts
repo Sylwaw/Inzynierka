@@ -18,7 +18,6 @@ export class MainComponent implements OnInit {
 
 person: IPersonCard;
 public personList: IPersonCard[];
-// persons: IPersonCard[] = [];
 public peopleWithDanger: IPersonCard[] = [];
 public peopleInArea: IPersonCard[] = [];
 public city: ICity;

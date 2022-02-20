@@ -40,8 +40,6 @@ export class MissingPeopleBaseComponent implements OnInit {
       {label: 'Wiek malejąco', value: 'yearOfBirth'},
       {label: 'Data zaginięcia: od najnowszych', value: '!dateOfDisappear'}
   ];
-
-
   }
 
   showDialog() {

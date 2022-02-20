@@ -14,34 +14,20 @@
       <div *ngFor="let image of images">
         <img [src]="image.previewImageSrc" />
       </div>
-      <!-- <button
-        pButton
-        pRipple
-        type="button"
-        (click)="showDialogToAddPhoto()"
-        label="Dodaj zdjęcie"
-        class="p-button-raised p-mb-2"
-        icon="pi pi-plus"
-      ></button> -->
+
     </div>
   </div>
   <div class="p-col">
     <div class="vertical-center">
-      <div class="p-d-flex" *ngIf="person.dangerOfLife != false">
-        <p>ZAGROŻENIE ŻYCIA: {{ person.description }}</p>
+      <div class="p-d-flex alert" *ngIf="person.dangerOfLife != false">
+        <h4>ZAGROŻENIE ŻYCIA: {{ person.description }}</h4>
       </div>
       <div class="p-d-flex" *ngIf="person.yearOfBirth">
         <p>Aktualny wiek: {{ actualAge(person.yearOfBirth) }}</p>
       </div>
       <div class="p-d-flex" *ngIf="person.city">
         <p>Ostatnie miejsce pobytu: {{ person.city }}</p>
-        <button
-          pButton
-          pRipple
-          type="button"
-          icon="c"
-          class="p-button-rounded p-button-secondary p-button-text"
-        ></button>
+
       </div>
       <div class="p-d-flex" *ngIf="person.yearOfBirth">
         <p>Rok urodzenia: {{ person.yearOfBirth }}</p>
@@ -189,8 +175,6 @@
                   <div *ngIf="email1.errors.pattern">Wprowadź poprawny adres email</div>
                 </div>
             </span>
-
-
           <div class="p-grid p-nogutter p-justify-end">
               <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
               <p-button [disabled]="!phone1.valid || !email1.valid" (click)="confirm(!phone1.valid || !email1.valid)" icon="pi pi-check" label="Potwierdzam" styleClass="p-mr-2"></p-button>
@@ -198,27 +182,9 @@
         </form>
           </div>
         </div>
-
-        <!-- <p-confirmDialog
-          [style]="{ width: '50vw' }"
-          [baseZIndex]="10000"
-          rejectButtonStyleClass="p-button-text"
-          key="updatePerson"
-        ></p-confirmDialog> -->
       </div>
-      <!-- <div>
-        <p-button
-          class="button-margin"
-          (click)="confirm2()"
-          icon="pi pi-check"
-          label="Potwierdź"
-          styleClass="p-mr-2"
-        ></p-button>
-      </div> -->
     </p-dialog>
   </div>
 </div>
 <p-toast></p-toast>
-<!-- <p-dialog header="Dodaj zdjęcie" [(visible)]="displayToAddPhoto">
-  <app-add-image></app-add-image>
-</p-dialog> -->
+
