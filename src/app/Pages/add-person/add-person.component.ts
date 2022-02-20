@@ -61,6 +61,7 @@ export class AddPersonComponent implements OnInit {
   dictEyeID: number;
   heightMin: ChoiceList[];
   heightMax: ChoiceList[];
+  heightMaxBase: ChoiceList[];
   weightMin: ChoiceList[];
   weightMax: ChoiceList[];
   year: ChoiceList[];
@@ -109,6 +110,7 @@ export class AddPersonComponent implements OnInit {
     for (let i = 50; i < 210; i++) {
       this.heightMax.push({ viewValue: i + 'cm', value: i });
     }
+    this.heightMaxBase = [...this.heightMax];
 
     this.weightMin = [];
     for (let i = 1; i < 200; i++) {
@@ -124,8 +126,12 @@ export class AddPersonComponent implements OnInit {
 
     this.year = [];
     for (let i = this.currentYear - 110; i <= this.currentYear; i++) {
-      this.year.push({ viewValue: i, value: i });
+      this.year.push({ viewValue: i, value: i, });
     }
+  }
+
+  changeMaxHeight(): void {
+    this.heightMax = this.heightMaxBase.filter(height => height.value > this.selectedValueHeightMin.value)
   }
 
 

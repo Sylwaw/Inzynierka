@@ -50,7 +50,7 @@
     <p-calendar
         [(ngModel)] = "dateOfDisappear"
         #dateOfDis="ngModel"
-        class="form-control"
+        class="form-control;;;"
         id="date-input"
         [maxDate]="maxDateValue"
         name="date-input"
@@ -78,6 +78,7 @@
         #dropHeightMin="ngModel"
         name="heightMin"
         [(ngModel)]="selectedValueHeightMin"
+        (onChange)="changeMaxHeight()"
         optionLabel="viewValue"
         placeholder="Wzrost od"
         [filter]="true"

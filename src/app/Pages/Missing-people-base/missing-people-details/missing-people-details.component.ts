@@ -39,7 +39,6 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
   base64photo: string;
   photos: string[] = [];
 
-
   images: IPhoto[] = [];
 
   responsiveOptions: any[] = [
@@ -64,7 +63,7 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
     private location: Location,
     private personHttpService: PersonHttpService,
     private router: Router,
-    private sanitization:DomSanitizer
+    private sanitization: DomSanitizer
   ) {}
   ngOnDestroy(): void {
     if (this.paramRouteSub !== undefined) {
@@ -80,23 +79,25 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
   }
 
   getPeopleById(id: number) {
-    this.personHttpService.getPeopleById(id).subscribe((src) => {
-      this.person = src;
-      //this.getPersonPhotoList();
-      this.getPhotoList();
-    }, (error) => {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Rejected',
-        detail: 'Nie udane pobranie z bazy',
-      });
-    });
-
+    this.personHttpService.getPeopleById(id).subscribe(
+      (src) => {
+        this.person = src;
+        //this.getPersonPhotoList();
+        this.getPhotoList();
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Rejected',
+          detail: 'Nie udane pobranie z bazy',
+        });
+      }
+    );
   }
 
-  putPerson(id:number){
+  putPerson(id: number) {
     this.personHttpService.putPeopleById(id, this.personToUpdate).subscribe(
-      (src)=> {
+      (src) => {
         this.personToUpdate = src;
       },
       (error) => {
@@ -109,10 +110,15 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
-  getPhoto(name: string){
+  getPhoto(name: string) {
     this.personHttpService.getPhotoFile(name).subscribe(
       (src) => {
-        this.images.push({alt:name,previewImageSrc:src,thumbnailImageSrc:src,title:name});
+        this.images.push({
+          alt: name,
+          previewImageSrc: src,
+          thumbnailImageSrc: src,
+          title: name,
+        });
       },
       (error) => {
         this.messageService.add({
@@ -121,30 +127,27 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
           detail: 'Nie udało się wczytać zdjęcia',
         });
       }
-    )
+    );
   }
 
-  updatePerson(){
-    if(this.person.dangerOfLife != true){
+  updatePerson() {
+    if (this.person.dangerOfLife != true) {
       this.personToUpdate.isAtRisk = this.isAtRisk;
-    }
-    else{
+    } else {
       this.personToUpdate.isAtRisk = this.person.dangerOfLife;
     }
     this.personToUpdate.isWaiting = true;
-    if(this.city != ''){
+    if (this.city != '') {
       this.personToUpdate.city = this.city;
-    }
-    else{
+    } else {
       this.personToUpdate.city = this.person.city;
     }
-    if(this.riskDescription != ''){
+    if (this.riskDescription != '') {
       this.personToUpdate.riskDescription = this.riskDescription;
-    }
-    else{
+    } else {
       this.personToUpdate.riskDescription = this.person.description;
     }
-    if(this.otherDetails != ''){
+    if (this.otherDetails != '') {
       this.personToUpdate.otherDetails = this.otherDetails;
     }
 
@@ -163,9 +166,9 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
   // }
 
   getPhotoList() {
-    this.person.pictures.forEach(s => {
-        this.getPhoto(s);
-    })
+    this.person.pictures.forEach((s) => {
+      this.getPhoto(s);
+    });
   }
 
   showDialog() {
@@ -190,13 +193,14 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
     return actualAge;
   }
 
-  waitingPerson(){
+  waitingPerson() {
     this.person.isWaiting = true;
   }
 
-  confirm(){
-    this.updatePerson();
-    this.router.navigateByUrl('/main');
+  confirm(isInvalid: boolean) {
+    if (!isInvalid) {
+      this.updatePerson();
+      this.router.navigateByUrl('/main');
+    }
   }
-
 }
