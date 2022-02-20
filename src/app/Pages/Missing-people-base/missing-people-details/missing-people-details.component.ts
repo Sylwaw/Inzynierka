@@ -82,7 +82,7 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
   getPeopleById(id: number) {
     this.personHttpService.getPeopleById(id).subscribe((src) => {
       this.person = src;
-      this.getPersonPhotoList();
+      //this.getPersonPhotoList();
       this.getPhotoList();
     }, (error) => {
       this.messageService.add({
@@ -112,7 +112,6 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
   getPhoto(name: string){
     this.personHttpService.getPhotoFile(name).subscribe(
       (src) => {
-        // this.photos.push(src);
         this.images.push({alt:name,previewImageSrc:src,thumbnailImageSrc:src,title:name});
       },
       (error) => {
@@ -152,16 +151,16 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
     this.putPerson(this.person.id);
   }
 
-  getPersonPhotoList() {
-    this.person.pictures.forEach(s =>  {
-      // this.images.push({
-      //   previewImageSrc: this.sanitization.bypassSecurityTrustUrl("assets/" + s),
-      //   alt: s,
-      //   thumbnailImageSrc: this.sanitization.bypassSecurityTrustUrl("assets/" + s),
-      //   title: s,
-      // });
-    })
-  }
+  // getPersonPhotoList() {
+  //   this.person.pictures.forEach(s =>  {
+  //     // this.images.push({
+  //     //   previewImageSrc: this.sanitization.bypassSecurityTrustUrl("assets/" + s),
+  //     //   alt: s,
+  //     //   thumbnailImageSrc: this.sanitization.bypassSecurityTrustUrl("assets/" + s),
+  //     //   title: s,
+  //     // });
+  //   })
+  // }
 
   getPhotoList() {
     this.person.pictures.forEach(s => {
@@ -195,55 +194,9 @@ export class MissingPeopleDetailsComponent implements OnInit, OnDestroy {
     this.person.isWaiting = true;
   }
 
-  confirm() {
-    this.confirmationService.confirm({
-      message: 'Jesteś pewien, że powierdzasz informacje?',
-      header: 'Potwierdź',
-      icon: 'pi pi-exclamation-triangle',
-      key: 'clientIsLostPerson',
-      accept: () => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Potwierdzono',
-          detail: 'Zaakceptowano',
-        });
-        this.updatePerson();
-        this.router.navigateByUrl('/main');
-
-      },
-      reject: () => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Nie potwierdzono',
-          detail: 'Nie potwierdziłeś',
-        });
-        this.displayIfClientIsLostPerson = false;
-      },
-    });
+  confirm(){
+    this.updatePerson();
+    this.router.navigateByUrl('/main');
   }
-
-  confirm2() {
-    this.confirmationService.confirm({
-        message: 'Jesteś pewien, ze potwierdzasz informacje?',
-        header: 'Potwierdź',
-        icon: 'pi pi-info-circle',
-        key: 'updatePerson',
-        accept: () => {
-            this.messageService.add({severity:'info', summary:'Confirmed', detail:'Record deleted'});
-            this.updatePerson();
-            this.router.navigateByUrl('/main');
-        },
-        reject: (type) => {
-          this.messageService.add({
-            severity: 'info',
-            summary: 'Nie potwierdzono',
-            detail: 'Nie potwierdziłeś',
-          });
-          this.displayIfClientUpdate = false;
-        }
-      }
-    );
-
-    }
 
 }

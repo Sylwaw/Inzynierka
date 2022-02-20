@@ -149,7 +149,6 @@ export class AddPersonComponent implements OnInit {
   }
 
   createNewPerson(){
-    //this.personToCreate.name = this.name;
     this.personToCreate.isAtRisk = this.isAtRisk;
     this.personToCreate.heightFrom = this.selectedValueHeightMin.value;
     this.personToCreate.heightTo = this.selectedValueHeightMax.value;
@@ -166,7 +165,6 @@ export class AddPersonComponent implements OnInit {
     this.personHttpService.postPerson(this.personToCreate).subscribe(
       (src)=> {
         this.personToCreate = src;
-        console.log("test111");
       },
       (error) => {
         this.messageService.add({
